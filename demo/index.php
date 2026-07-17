@@ -139,6 +139,15 @@
           <button data-bootcn-command-item data-id="theme">Toggle theme</button>
         </div>
       </div>
+
+      <h3 class="h6 mt-3">Input OTP</h3>
+      <input type="text" data-bootcn-otp data-length="6" aria-label="One-time code">
+
+      <h3 class="h6 mt-3">Date picker</h3>
+      <input type="hidden" data-bootcn-datepicker data-placeholder="Pick a date">
+
+      <h3 class="h6 mt-3">Calendar</h3>
+      <div class="card d-inline-block"><div data-bootcn-calendar></div></div>
     </section>
   </div>
 

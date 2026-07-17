@@ -3,6 +3,9 @@ import { toast, Toaster } from './toast.js';
 import { Combobox } from './combobox.js';
 import { Command } from './command.js';
 import { initAvatars } from './avatar.js';
+import { InputOTP } from './otp.js';
+import { Calendar } from './calendar.js';
+import { DatePicker } from './datepicker.js';
 
 const bootcn = {
   version: '0.1.0',
@@ -10,11 +13,17 @@ const bootcn = {
   Toaster,
   Combobox,
   Command,
+  InputOTP,
+  Calendar,
+  DatePicker,
   command: null, // set to the first Command instance on init (bootcn.command.open())
   init(root) {
     root = root || document;
     initAvatars(root);
     root.querySelectorAll('select[data-bootcn-combobox]').forEach((el) => Combobox.getOrCreate(el));
+    root.querySelectorAll('input[data-bootcn-otp]').forEach((el) => InputOTP.getOrCreate(el));
+    root.querySelectorAll('[data-bootcn-calendar]').forEach((el) => Calendar.getOrCreate(el));
+    root.querySelectorAll('input[data-bootcn-datepicker]').forEach((el) => DatePicker.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-command]').forEach((el) => {
       const inst = Command.getOrCreate(el);
       if (!bootcn.command) bootcn.command = inst;
