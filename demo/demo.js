@@ -20,6 +20,14 @@
     apply(next);
   });
 
+  // Show the platform-correct command-palette hint (⌘ on Mac, Ctrl elsewhere).
+  var isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
+  if (!isMac) {
+    document.querySelectorAll('.kbd').forEach(function (k) {
+      k.textContent = k.textContent.replace('⌘', 'Ctrl ');
+    });
+  }
+
   var shell = document.getElementById('shell');
   var navToggle = document.getElementById('navToggle');
   if (shell && navToggle) {

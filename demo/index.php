@@ -127,7 +127,7 @@
       </select>
 
       <h3 class="h6 mt-3">Command palette</h3>
-      <button class="btn btn-outline-secondary btn-sm" onclick="bootcn.command.open()">Open (⌘K)</button>
+      <button class="btn btn-outline-secondary btn-sm" onclick="bootcn.command.open()">Open command palette (Ctrl / ⌘ K)</button>
       <div data-bootcn-command hidden>
         <div data-bootcn-command-group="Navigation">
           <button data-bootcn-command-item data-href="dashboard.php" data-shortcut="G D">Go to Dashboard</button>
