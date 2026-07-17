@@ -1,0 +1,29 @@
+{
+  "name": "bootstrap-shadcn-theme",
+  "version": "0.1.0",
+  "description": "A shadcn/ui theme for Bootstrap 5, compiled from vendored Bootstrap Sass source.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "vendor:refresh": "shx rm -rf vendor/bootstrap/scss && shx mkdir -p vendor/bootstrap && shx cp -r node_modules/bootstrap/scss vendor/bootstrap/scss",
+    "copy:js": "shx mkdir -p dist/js && shx cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js dist/js/bootstrap.bundle.min.js",
+    "build:css": "sass scss/theme.scss dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps",
+    "build:min": "sass scss/theme.scss dist/css/bootstrap-shadcn.min.css --style=compressed --no-source-map --quiet-deps",
+    "prefix": "postcss dist/css/bootstrap-shadcn.css dist/css/bootstrap-shadcn.min.css --replace --use autoprefixer",
+    "build": "npm run build:css && npm run build:min && npm run prefix && npm run copy:js",
+    "watch": "sass --watch scss/theme.scss:dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps"
+  },
+  "browserslist": [
+    "defaults",
+    "not dead",
+    "not IE 11"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "bootstrap": "^5.3.3",
+    "postcss": "^8.4.0",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.77.0",
+    "shx": "^0.3.4"
+  }
+}
