@@ -9,9 +9,18 @@
 </head>
 <body class="p-4">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="h3 mb-0">shadcn theme kitchen sink</h1>
       <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button">Toggle theme</button>
+    </div>
+
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-4 pb-3 border-bottom">
+      <span class="text-body-secondary small me-1">Example pages:</span>
+      <a class="btn btn-outline-secondary btn-sm" href="/demo/dashboard.php">Dashboard</a>
+      <a class="btn btn-outline-secondary btn-sm" href="/demo/users.php">Users</a>
+      <a class="btn btn-outline-secondary btn-sm" href="/demo/settings.php">Settings</a>
+      <a class="btn btn-outline-secondary btn-sm" href="/demo/login.php">Login</a>
+      <a class="btn btn-outline-secondary btn-sm" href="/demo/signup.php">Sign up</a>
     </div>
 
     <section class="mb-4">

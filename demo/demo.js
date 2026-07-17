@@ -1,0 +1,33 @@
+// Demo chrome: theme persistence + toggle, and the mobile sidebar.
+(function () {
+  var root = document.documentElement;
+  var SUN = '<svg class="lucide" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+  var MOON = '<svg class="lucide" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+
+  function apply(theme) {
+    root.setAttribute('data-bs-theme', theme);
+    var btn = document.getElementById('themeToggle');
+    if (btn) btn.innerHTML = theme === 'dark' ? MOON : SUN;
+  }
+  var urlTheme = new URLSearchParams(location.search).get('theme');
+  if (urlTheme === 'dark' || urlTheme === 'light') localStorage.setItem('theme', urlTheme);
+  apply(localStorage.getItem('theme') || 'light');
+
+  var toggle = document.getElementById('themeToggle');
+  if (toggle) toggle.addEventListener('click', function () {
+    var next = root.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    apply(next);
+  });
+
+  var shell = document.getElementById('shell');
+  var navToggle = document.getElementById('navToggle');
+  if (shell && navToggle) {
+    navToggle.addEventListener('click', function () { shell.classList.toggle('nav-open'); });
+    shell.addEventListener('click', function (e) {
+      if (shell.classList.contains('nav-open') && !e.target.closest('.sidebar') && !e.target.closest('.sidebar-toggle')) {
+        shell.classList.remove('nav-open');
+      }
+    });
+  }
+})();
