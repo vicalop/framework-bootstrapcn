@@ -10,7 +10,99 @@ $box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, .05);
 $box-shadow:    0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1);
 $box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1);
 
-// Slightly tighter default component paddings to match shadcn density
-$input-btn-padding-y: .5rem;
+
+// ---------------------------------------------------------------------------
+// Typography — shadcn/ui uses 14px (text-sm) as the base control/body size and
+// Inter as its signature typeface. Root stays 16px so rem-based spacing anchors
+// correctly; only the base font-size drops to 14px.
+// ---------------------------------------------------------------------------
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-size-base: 0.875rem; // 14px
+
+// Heading scale (Tailwind text-4xl → text-lg), semibold, tight leading.
+// Heading letter-spacing (tracking-tight) is applied in _shadcn-overrides.
+$headings-font-weight: 600;
+$h1-font-size: 2.25rem;   // text-4xl
+$h2-font-size: 1.875rem;  // text-3xl
+$h3-font-size: 1.5rem;    // text-2xl
+$h4-font-size: 1.25rem;   // text-xl
+$h5-font-size: 1.125rem;  // text-lg
+$h6-font-size: 1rem;
+
+
+// ---------------------------------------------------------------------------
+// Spacing scale — remap Bootstrap's spacers onto Tailwind's 0.25rem steps so
+// utility numbers match Tailwind numbers (.p-4 = 1rem, .p-6 = 1.5rem, etc.).
+// NOTE: this intentionally changes what .p-*/.m-*/.gap-*/.g-* mean.
+// ---------------------------------------------------------------------------
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: .25rem,
+  2: .5rem,
+  3: .75rem,
+  4: 1rem,
+  5: 1.25rem,
+  6: 1.5rem,
+  8: 2rem,
+  10: 2.5rem,
+  12: 3rem,
+  16: 4rem,
+);
+
+
+// ---------------------------------------------------------------------------
+// Component dimensions — shadcn density targets.
+// ---------------------------------------------------------------------------
+
+// Buttons & inputs share these base paddings. Vertical padding is kept below the
+// target height on purpose — shadcn controls are FIXED height (h-8/h-9/h-10),
+// enforced via min-height + centering in _shadcn-overrides; padding only pads.
+$input-btn-padding-y: .375rem;
 $input-btn-padding-x: 1rem;
 $input-btn-font-size: .875rem;
+
+// shadcn buttons use font-medium (500), not Bootstrap's default 400
+$btn-font-weight: 500;
+
+// Small controls (shadcn size="sm": h-8, px-3, text-xs)
+$input-btn-padding-y-sm: .375rem;
+$input-btn-padding-x-sm: .75rem;
+$input-btn-font-size-sm: .75rem;
+
+// Large controls (shadcn size="lg": h-10, px-8, text-sm)
+$input-btn-padding-y-lg: .5rem;
+$input-btn-padding-x-lg: 2rem;
+$input-btn-font-size-lg: .875rem;
+
+// Inputs are tighter horizontally than buttons (shadcn input = px-3)
+$input-padding-x: .75rem;
+
+// Cards — shadcn uses p-6 (1.5rem)
+$card-spacer-y: 1.5rem;
+$card-spacer-x: 1.5rem;
+
+// Modals / dialogs — shadcn uses p-6
+$modal-inner-padding: 1.5rem;
+$modal-header-padding-y: 1.5rem;
+$modal-header-padding-x: 1.5rem;
+
+// Dropdown menus — compact, shadcn menu p-1 with px-2/py-1.5 items
+$dropdown-padding-y: .25rem;
+$dropdown-item-padding-y: .375rem;
+$dropdown-item-padding-x: .5rem;
+$dropdown-font-size: .875rem;
+
+// Tables — shadcn cells px-4 py-3-ish
+$table-cell-padding-y: .75rem;
+$table-cell-padding-x: 1rem;
+
+// Badges — shadcn badge px-2.5 py-0.5 text-xs font-semibold
+$badge-font-size: .75rem;
+$badge-font-weight: 600;
+$badge-padding-y: .25rem;
+$badge-padding-x: .625rem;
+
+// Form labels — shadcn label text-sm font-medium
+$form-label-font-weight: 500;
+$form-label-margin-bottom: .5rem;

@@ -7,10 +7,11 @@
   "scripts": {
     "vendor:refresh": "shx rm -rf vendor/bootstrap/scss && shx mkdir -p vendor/bootstrap && shx cp -r node_modules/bootstrap/scss vendor/bootstrap/scss",
     "copy:js": "shx mkdir -p dist/js && shx cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js dist/js/bootstrap.bundle.min.js",
+    "copy:fonts": "shx mkdir -p dist/fonts && shx cp assets/fonts/InterVariable.woff2 dist/fonts/InterVariable.woff2",
     "build:css": "sass scss/theme.scss dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps",
     "build:min": "sass scss/theme.scss dist/css/bootstrap-shadcn.min.css --style=compressed --no-source-map --quiet-deps",
     "prefix": "postcss dist/css/bootstrap-shadcn.css dist/css/bootstrap-shadcn.min.css --replace --use autoprefixer",
-    "build": "npm run build:css && npm run build:min && npm run prefix && npm run copy:js",
+    "build": "npm run build:css && npm run build:min && npm run prefix && npm run copy:js && npm run copy:fonts",
     "watch": "sass --watch scss/theme.scss:dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps"
   },
   "browserslist": [

@@ -1,6 +1,57 @@
 // Surgical CSS overrides — the shadcn details Bootstrap variables don't expose.
 // Everything references the runtime token layer, so light/dark both work.
 
+// --- Inter (shadcn's signature typeface), self-hosted variable font ---
+// The .woff2 lives at dist/fonts/ (copied from assets/fonts/ by `npm run build`);
+// this file compiles to dist/css/, so the path is one level up then into fonts/.
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/InterVariable.woff2") format("woff2");
+}
+
+// --- Headings: shadcn uses tracking-tight (-0.025em) on display headings ---
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  letter-spacing: -0.025em;
+}
+
+// --- Control heights: shadcn controls are fixed height with centered content
+//     (sm=h-8=2rem, default=h-9=2.25rem, lg=h-10=2.5rem), not padding-derived. ---
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  // shadcn buttons are rounded-md (calc(--radius - 2px)) at every size, not the
+  // default rounded-lg (--radius). Bootstrap resets this per-size, so set all three.
+  --bs-btn-border-radius: calc(var(--radius) - 2px);
+}
+.btn-sm {
+  min-height: 2rem;
+  --bs-btn-border-radius: calc(var(--radius) - 2px);
+}
+.btn-lg {
+  min-height: 2.5rem;
+  --bs-btn-border-radius: calc(var(--radius) - 2px);
+}
+
+.form-control,
+.form-select {
+  min-height: 2.25rem;
+}
+.form-control-sm,
+.form-select-sm { min-height: 2rem; }
+.form-control-lg,
+.form-select-lg { min-height: 2.5rem; }
+
+// Textareas grow with rows; don't force a single-line height on them.
+textarea.form-control {
+  min-height: auto;
+}
+
 // --- Focus ring: shadcn = 2px ring in --ring color, offset from the control ---
 :focus-visible,
 .form-control:focus,

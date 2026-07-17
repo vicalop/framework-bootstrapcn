@@ -22,6 +22,11 @@
       <button class="btn btn-outline-secondary">Outline</button>
       <button class="btn btn-link">Link</button>
       <button class="btn btn-primary" disabled>Disabled</button>
+      <div class="mt-3 d-flex align-items-center gap-2">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+      </div>
     </section>
 
     <section class="mb-4">
