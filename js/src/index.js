@@ -9,6 +9,8 @@ import { DatePicker } from './datepicker.js';
 import { ContextMenu } from './context-menu.js';
 import { HoverCard } from './hovercard.js';
 import { Resizable } from './resizable.js';
+import { Menubar } from './menubar.js';
+import { NavigationMenu } from './navmenu.js';
 
 const bootcn = {
   version: '0.1.0',
@@ -22,6 +24,8 @@ const bootcn = {
   ContextMenu,
   HoverCard,
   Resizable,
+  Menubar,
+  NavigationMenu,
   command: null, // set to the first Command instance on init (bootcn.command.open())
   init(root) {
     root = root || document;
@@ -33,6 +37,8 @@ const bootcn = {
     root.querySelectorAll('[data-bootcn-context-menu]').forEach((el) => ContextMenu.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-hovercard]').forEach((el) => HoverCard.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-resizable]').forEach((el) => Resizable.getOrCreate(el));
+    root.querySelectorAll('[data-bootcn-menubar]').forEach((el) => Menubar.getOrCreate(el));
+    root.querySelectorAll('[data-bootcn-navmenu]').forEach((el) => NavigationMenu.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-command]').forEach((el) => {
       const inst = Command.getOrCreate(el);
       if (!bootcn.command) bootcn.command = inst;

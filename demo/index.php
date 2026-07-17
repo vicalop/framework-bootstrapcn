@@ -181,6 +181,36 @@
       <div class="bootcn-scroll-area card p-3" style="height:8rem;max-width:18rem">
         <?php for ($i = 1; $i <= 15; $i++) echo "<div class='py-1'>Notification $i</div>"; ?>
       </div>
+
+      <h3 class="h6 mt-3">Menubar</h3>
+      <div data-bootcn-menubar>
+        <div class="dropdown"><button class="bootcn-menubar-trigger">File</button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item">New Tab <span class="bootcn-menubar-kbd">⌘T</span></button></li>
+            <li><button class="dropdown-item">New Window <span class="bootcn-menubar-kbd">⌘N</span></button></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button class="dropdown-item">Print <span class="bootcn-menubar-kbd">⌘P</span></button></li>
+          </ul></div>
+        <div class="dropdown"><button class="bootcn-menubar-trigger">Edit</button>
+          <ul class="dropdown-menu"><li><button class="dropdown-item">Undo <span class="bootcn-menubar-kbd">⌘Z</span></button></li>
+          <li><button class="dropdown-item">Redo <span class="bootcn-menubar-kbd">⇧⌘Z</span></button></li></ul></div>
+        <div class="dropdown"><button class="bootcn-menubar-trigger">View</button>
+          <ul class="dropdown-menu"><li><button class="dropdown-item">Toggle sidebar</button></li></ul></div>
+      </div>
+
+      <h3 class="h6 mt-3">Navigation menu</h3>
+      <nav data-bootcn-navmenu>
+        <div class="bootcn-navmenu-item">
+          <button class="bootcn-navmenu-trigger">Products <span class="bootcn-navmenu-caret">&#9662;</span></button>
+          <div class="bootcn-navmenu-content">
+            <a class="bootcn-navmenu-link-card" href="#"><div class="title">Analytics</div><div class="desc">Understand your traffic and conversions.</div></a>
+            <a class="bootcn-navmenu-link-card" href="#"><div class="title">Billing</div><div class="desc">Invoices, plans, and payment methods.</div></a>
+            <a class="bootcn-navmenu-link-card" href="#"><div class="title">Security</div><div class="desc">SSO, audit logs, and access control.</div></a>
+          </div>
+        </div>
+        <a class="bootcn-navmenu-link" href="#">Docs</a>
+        <a class="bootcn-navmenu-link" href="#">Pricing</a>
+      </nav>
     </section>
   </div>
 
