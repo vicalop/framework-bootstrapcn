@@ -1,0 +1,32 @@
+// bootcn Resizable split panes
+.bootcn-resizable { display: flex; }
+.bootcn-resizable.is-vertical { flex-direction: column; }
+.bootcn-resizable > [data-bootcn-panel] { overflow: auto; min-width: 0; min-height: 0; }
+
+.bootcn-resizable-handle {
+  position: relative;
+  flex: 0 0 1px;
+  background: hsl(var(--border));
+  cursor: col-resize;
+  touch-action: none;
+}
+.bootcn-resizable.is-vertical .bootcn-resizable-handle { cursor: row-resize; }
+.bootcn-resizable-handle::after { content: ""; position: absolute; inset: -5px 0; }
+.bootcn-resizable.is-vertical .bootcn-resizable-handle::after { inset: 0 -5px; }
+.bootcn-resizable-handle:hover,
+.bootcn-resizable-handle.is-dragging { background: hsl(var(--ring)); }
+
+.bootcn-resizable-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 1.5rem;
+  border-radius: 2px;
+  background: hsl(var(--border));
+  z-index: 1;
+}
+.bootcn-resizable.is-vertical .bootcn-resizable-grip { width: 1.5rem; height: 3px; }
+.bootcn-resizable-handle:hover .bootcn-resizable-grip { background: hsl(var(--muted-foreground)); }
+.bootcn-resizable-handle:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 1px; }

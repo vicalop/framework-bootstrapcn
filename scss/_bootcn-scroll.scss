@@ -1,0 +1,13 @@
+// bootcn Scroll Area — thin, token-coloured custom scrollbars.
+.bootcn-scroll-area {
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+.bootcn-scroll-area::-webkit-scrollbar { width: .5rem; height: .5rem; }
+.bootcn-scroll-area::-webkit-scrollbar-track { background: transparent; }
+.bootcn-scroll-area::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 99px;
+}
+.bootcn-scroll-area::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }

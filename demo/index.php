@@ -170,6 +170,17 @@
             <div class="text-body-secondary">Joined March 2024</div>
             <p class="mb-0 mt-1">Product designer building calm tools at Acme.</p></div></div>
         </template></span> — hover to preview.</p>
+
+      <h3 class="h6 mt-3">Resizable</h3>
+      <div data-bootcn-resizable class="card overflow-hidden" style="height:8rem;max-width:32rem">
+        <div data-bootcn-panel class="p-3 d-flex align-items-center justify-content-center fw-medium">Sidebar</div>
+        <div data-bootcn-panel class="p-3 d-flex align-items-center justify-content-center fw-medium bg-body-secondary">Content</div>
+      </div>
+
+      <h3 class="h6 mt-3">Scroll area</h3>
+      <div class="bootcn-scroll-area card p-3" style="height:8rem;max-width:18rem">
+        <?php for ($i = 1; $i <= 15; $i++) echo "<div class='py-1'>Notification $i</div>"; ?>
+      </div>
     </section>
   </div>
 
