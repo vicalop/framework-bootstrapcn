@@ -1,0 +1,21 @@
+// bootstrap-shadcn-theme entry point.
+// Import order matters — see docs/superpowers/plans.
+//
+// 1. Bootstrap functions (needed by any Sass var overrides below)
+@import "../vendor/bootstrap/scss/functions";
+
+// 2. Structural Sass variable overrides (must precede the Bootstrap import)
+@import "bootstrap-overrides";
+
+// 3. Full Bootstrap build
+@import "../vendor/bootstrap/scss/bootstrap";
+
+// 4. shadcn runtime token layers
+@import "tokens-light";
+@import "tokens-dark";
+
+// 5. Bootstrap variable remap → shadcn tokens
+@import "bs-variable-map";
+
+// 6. Surgical CSS overrides (must be last)
+@import "shadcn-overrides";

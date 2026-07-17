@@ -1,0 +1,230 @@
+// Surgical CSS overrides — the shadcn details Bootstrap variables don't expose.
+// Everything references the runtime token layer, so light/dark both work.
+
+// --- Focus ring: shadcn = 2px ring in --ring color, offset from the control ---
+:focus-visible,
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus,
+.btn:focus-visible,
+.btn-check:focus-visible + .btn {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  box-shadow: none;
+  border-color: hsl(var(--ring));
+}
+
+// Bootstrap colors bare links via --bs-link-color-rgb (an RGB triplet our
+// HSL-channel tokens can't populate), so recolor links directly.
+a {
+  color: hsl(var(--primary));
+}
+a:hover {
+  color: hsl(var(--primary) / .9);
+}
+
+// --- Buttons: solid variants use tokens; hover = 90% opacity (shadcn convention) ---
+.btn-primary {
+  --bs-btn-bg: hsl(var(--primary));
+  --bs-btn-border-color: hsl(var(--primary));
+  --bs-btn-color: hsl(var(--primary-foreground));
+  --bs-btn-hover-bg: hsl(var(--primary) / .9);
+  --bs-btn-hover-border-color: hsl(var(--primary) / .9);
+  --bs-btn-hover-color: hsl(var(--primary-foreground));
+  --bs-btn-active-bg: hsl(var(--primary) / .9);
+  --bs-btn-active-border-color: hsl(var(--primary) / .9);
+  --bs-btn-active-color: hsl(var(--primary-foreground));
+  --bs-btn-disabled-bg: hsl(var(--primary));
+  --bs-btn-disabled-border-color: hsl(var(--primary));
+  --bs-btn-disabled-color: hsl(var(--primary-foreground));
+}
+
+.btn-secondary {
+  --bs-btn-bg: hsl(var(--secondary));
+  --bs-btn-border-color: hsl(var(--secondary));
+  --bs-btn-color: hsl(var(--secondary-foreground));
+  --bs-btn-hover-bg: hsl(var(--secondary) / .8);
+  --bs-btn-hover-border-color: hsl(var(--secondary) / .8);
+  --bs-btn-hover-color: hsl(var(--secondary-foreground));
+  --bs-btn-active-bg: hsl(var(--secondary) / .8);
+  --bs-btn-active-color: hsl(var(--secondary-foreground));
+  --bs-btn-disabled-bg: hsl(var(--secondary));
+  --bs-btn-disabled-border-color: hsl(var(--secondary));
+  --bs-btn-disabled-color: hsl(var(--secondary-foreground));
+}
+
+.btn-danger {
+  --bs-btn-bg: hsl(var(--destructive));
+  --bs-btn-border-color: hsl(var(--destructive));
+  --bs-btn-color: hsl(var(--destructive-foreground));
+  --bs-btn-hover-bg: hsl(var(--destructive) / .9);
+  --bs-btn-hover-border-color: hsl(var(--destructive) / .9);
+  --bs-btn-hover-color: hsl(var(--destructive-foreground));
+  --bs-btn-active-bg: hsl(var(--destructive) / .9);
+  --bs-btn-active-color: hsl(var(--destructive-foreground));
+}
+
+// Outline + ghost feel for the neutral outline button
+.btn-outline-secondary,
+.btn-outline-primary {
+  --bs-btn-border-color: hsl(var(--border));
+  --bs-btn-color: hsl(var(--foreground));
+  --bs-btn-hover-bg: hsl(var(--accent));
+  --bs-btn-hover-border-color: hsl(var(--border));
+  --bs-btn-hover-color: hsl(var(--accent-foreground));
+  --bs-btn-active-bg: hsl(var(--accent));
+  --bs-btn-active-color: hsl(var(--accent-foreground));
+}
+
+// Link button
+.btn-link {
+  --bs-btn-color: hsl(var(--primary));
+  --bs-btn-hover-color: hsl(var(--primary) / .9);
+  text-decoration: none;
+}
+.btn-link:hover { text-decoration: underline; }
+
+// --- Form controls: shadcn input = 1px --input border, muted placeholder ---
+.form-control,
+.form-select {
+  background-color: hsl(var(--background));
+  border-color: hsl(var(--input));
+  color: hsl(var(--foreground));
+}
+.form-control::placeholder { color: hsl(var(--muted-foreground)); }
+.form-control:disabled,
+.form-select:disabled {
+  background-color: hsl(var(--muted));
+  opacity: .6;
+}
+
+// --- Checks, radios, switches ---
+.form-check-input {
+  background-color: hsl(var(--background));
+  border-color: hsl(var(--input));
+}
+.form-check-input:checked {
+  background-color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+}
+// Bootstrap bakes the checked icon as a static white SVG at compile time
+// ($form-check-input-checked-color: $white, baked into the data-URI at Sass
+// compile time — see vendor/bootstrap/scss/_variables.scss). That's fine in
+// light mode, where the checked box fill (hsl(var(--primary)) below) is
+// near-black and the white glyph reads clearly against it. In dark mode
+// --primary flips to near-white, so that same white glyph disappears against
+// its own box.
+//
+// *** SINGLE INTENTIONAL STATIC-COLOR EXCEPTION IN THIS THEME ***
+// Every other rule in this file drives color from hsl(var(--token)) so it's
+// reskinnable at runtime with no rebuild. This one can't be: the icon is a
+// data-URI SVG string, and a value baked into a data-URI is fixed at compile
+// time — a CSS var or hsl() cannot be interpolated into it at runtime. This
+// is the exact same constraint Bootstrap's own authors accepted for their
+// default `#fff` icon; we're following that convention, not deviating from
+// it, just re-baking the SVG with a value that also serves as the dark
+// checked-icon color: dark mode's --primary-foreground (240 5.9% 10%), whose
+// hex equivalent is #18181b. If dark --primary-foreground is ever retuned to
+// a different value, this literal must be updated to match by hand.
+//
+// This preserves the actual shadcn look: a solid --primary-filled box with a
+// contrasting glyph on top (an earlier CSS-clip-based approach that avoided
+// baking in any color was tried and rejected here — clipping an element's
+// paint down to the icon's alpha shape takes the box's own fill down with
+// it, leaving a floating glyph with no filled box, which is the regression
+// this fix restores). We only redefine Bootstrap's own icon variables
+// (--bs-form-check-bg-image for checkbox + radio, --bs-form-switch-bg for
+// the switch) with the identical SVG geometry Bootstrap ships (same
+// viewBox/path/circle — verified against
+// vendor/bootstrap/scss/_variables.scss and the compiled
+// dist/css/bootstrap-shadcn.css), swapping only the color. background-image
+// itself is left alone; it already reads from these same vars.
+[data-bs-theme="dark"] {
+  .form-check-input:not([type="radio"]):checked {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%2318181b' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+  }
+  .form-check-input[type="radio"]:checked {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%2318181b'/%3e%3c/svg%3e");
+  }
+  .form-switch .form-check-input:checked {
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2318181b'/%3e%3c/svg%3e");
+  }
+}
+
+// --- Cards & elevated surfaces ---
+.card {
+  --bs-card-bg: hsl(var(--card));
+  --bs-card-color: hsl(var(--card-foreground));
+  --bs-card-border-color: hsl(var(--border));
+}
+
+// --- Dropdown / popover / modal / offcanvas / toast surfaces ---
+.dropdown-menu {
+  --bs-dropdown-bg: hsl(var(--popover));
+  --bs-dropdown-color: hsl(var(--popover-foreground));
+  --bs-dropdown-border-color: hsl(var(--border));
+  --bs-dropdown-link-color: hsl(var(--popover-foreground));
+  --bs-dropdown-link-hover-bg: hsl(var(--accent));
+  --bs-dropdown-link-hover-color: hsl(var(--accent-foreground));
+  --bs-dropdown-link-active-bg: hsl(var(--accent));
+  --bs-dropdown-link-active-color: hsl(var(--accent-foreground));
+}
+.modal-content,
+.offcanvas {
+  background-color: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  border-color: hsl(var(--border));
+}
+.toast {
+  --bs-toast-bg: hsl(var(--popover) / .95);
+  --bs-toast-color: hsl(var(--popover-foreground));
+  --bs-toast-border-color: hsl(var(--border));
+}
+
+// --- Nav / tabs: shadcn active tab is subtle ---
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: hsl(var(--background));
+  --bs-nav-tabs-link-active-color: hsl(var(--foreground));
+  --bs-nav-tabs-border-color: hsl(var(--border));
+  --bs-nav-tabs-link-active-border-color: hsl(var(--border));
+}
+
+// --- Badges: neutral by default, pill-ish rounded ---
+.badge {
+  border-radius: calc(var(--radius) - 2px);
+}
+.text-bg-primary {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+.text-bg-secondary {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+// Color utilities read --bs-*-rgb companions; retarget the common ones to tokens.
+// Note: .text-secondary/.bg-secondary are intentionally left alone — shadcn's
+// --secondary is a light surface color, not a text color, so mapping
+// text-secondary to it would make text invisible.
+.text-primary { color: hsl(var(--primary)) !important; }
+.bg-primary   { background-color: hsl(var(--primary)) !important; }
+.border-primary { border-color: hsl(var(--primary)) !important; }
+.link-primary { color: hsl(var(--primary)) !important; }
+.text-danger  { color: hsl(var(--destructive)) !important; }
+.bg-danger    { background-color: hsl(var(--destructive)) !important; }
+.border-danger { border-color: hsl(var(--destructive)) !important; }
+
+// --- Alerts: muted surface with token border ---
+.alert {
+  --bs-alert-bg: hsl(var(--muted));
+  --bs-alert-color: hsl(var(--foreground));
+  --bs-alert-border-color: hsl(var(--border));
+}
+
+// --- Tables ---
+.table {
+  --bs-table-color: hsl(var(--foreground));
+  --bs-table-border-color: hsl(var(--border));
+  --bs-table-striped-color: hsl(var(--foreground));
+  --bs-table-hover-color: hsl(var(--foreground));
+}
