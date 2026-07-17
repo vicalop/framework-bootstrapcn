@@ -1,0 +1,34 @@
+// Retarget Bootstrap's own CSS variables at the shadcn token layer.
+// Because the tokens themselves switch per theme, one block covers light AND dark.
+// The [data-bs-theme="dark"] selector here matches Bootstrap's dark specificity;
+// this file is imported AFTER Bootstrap, so these declarations win.
+:root,
+[data-bs-theme="light"],
+[data-bs-theme="dark"] {
+  // Surfaces & text
+  --bs-body-bg: hsl(var(--background));
+  --bs-body-color: hsl(var(--foreground));
+  --bs-emphasis-color: hsl(var(--foreground));
+  --bs-secondary-color: hsl(var(--muted-foreground));
+  --bs-secondary-bg: hsl(var(--muted));
+  --bs-tertiary-color: hsl(var(--muted-foreground));
+  --bs-tertiary-bg: hsl(var(--muted));
+
+  // Borders
+  --bs-border-color: hsl(var(--border));
+
+  // Radius scale, anchored on --radius (shadcn: lg = --radius, md = -2px, sm = -4px)
+  --bs-border-radius: var(--radius);
+  --bs-border-radius-sm: calc(var(--radius) - 4px);
+  --bs-border-radius-lg: var(--radius);
+  --bs-border-radius-xl: calc(var(--radius) + 4px);
+  --bs-border-radius-2xl: calc(var(--radius) + 8px);
+  --bs-border-radius-pill: 50rem;
+
+  // Links (shadcn: primary-colored, underline on hover handled in overrides)
+  --bs-link-color: hsl(var(--primary));
+  --bs-link-hover-color: hsl(var(--primary));
+
+  // Code / highlight incidental surfaces
+  --bs-highlight-bg: hsl(var(--muted));
+}

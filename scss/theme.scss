@@ -14,8 +14,8 @@
 @import "tokens-light";
 @import "tokens-dark";
 
-// 5. Bootstrap variable remap → shadcn tokens (Task 3) — added later
-// @import "bs-variable-map";
+// 5. Bootstrap variable remap → shadcn tokens
+@import "bs-variable-map";
 
 // 6. Surgical CSS overrides (Task 5) — added later
 // @import "shadcn-overrides";
