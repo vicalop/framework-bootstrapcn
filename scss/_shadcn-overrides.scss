@@ -14,6 +14,15 @@
   border-color: hsl(var(--ring));
 }
 
+// Bootstrap colors bare links via --bs-link-color-rgb (an RGB triplet our
+// HSL-channel tokens can't populate), so recolor links directly.
+a {
+  color: hsl(var(--primary));
+}
+a:hover {
+  color: hsl(var(--primary) / .9);
+}
+
 // --- Buttons: solid variants use tokens; hover = 90% opacity (shadcn convention) ---
 .btn-primary {
   --bs-btn-bg: hsl(var(--primary));
@@ -192,6 +201,18 @@
   background-color: hsl(var(--secondary)) !important;
   color: hsl(var(--secondary-foreground)) !important;
 }
+
+// Color utilities read --bs-*-rgb companions; retarget the common ones to tokens.
+// Note: .text-secondary/.bg-secondary are intentionally left alone — shadcn's
+// --secondary is a light surface color, not a text color, so mapping
+// text-secondary to it would make text invisible.
+.text-primary { color: hsl(var(--primary)) !important; }
+.bg-primary   { background-color: hsl(var(--primary)) !important; }
+.border-primary { border-color: hsl(var(--primary)) !important; }
+.link-primary { color: hsl(var(--primary)) !important; }
+.text-danger  { color: hsl(var(--destructive)) !important; }
+.bg-danger    { background-color: hsl(var(--destructive)) !important; }
+.border-danger { border-color: hsl(var(--destructive)) !important; }
 
 // --- Alerts: muted surface with token border ---
 .alert {

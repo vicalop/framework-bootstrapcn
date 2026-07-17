@@ -75,6 +75,15 @@
     </section>
 
     <section class="mb-4">
+      <h2 class="h5">Links &amp; color utilities</h2>
+      <p>A bare <a href="#">text link</a> should be neutral (near-black / near-white), not blue.</p>
+      <p><span class="text-primary">.text-primary</span> ·
+         <span class="text-danger">.text-danger</span> ·
+         <span class="badge bg-primary">bg-primary</span> ·
+         <span class="badge bg-danger">bg-danger</span></p>
+    </section>
+
+    <section class="mb-4">
       <h2 class="h5">Table</h2>
       <table class="table"><thead><tr><th>Name</th><th>Role</th></tr></thead>
         <tbody><tr><td>Ada</td><td>Admin</td></tr><tr><td>Linus</td><td>User</td></tr></tbody></table>

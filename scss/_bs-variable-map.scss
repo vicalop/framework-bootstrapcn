@@ -29,6 +29,9 @@
   --bs-link-color: hsl(var(--primary));
   --bs-link-hover-color: hsl(var(--primary));
 
+  // Focus ring color (Bootstrap defaults it from --bs-primary-rgb = blue)
+  --bs-focus-ring-color: hsl(var(--ring) / .5);
+
   // Code / highlight incidental surfaces
   --bs-highlight-bg: hsl(var(--muted));
 }
