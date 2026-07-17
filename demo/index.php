@@ -148,6 +148,28 @@
 
       <h3 class="h6 mt-3">Calendar</h3>
       <div class="card d-inline-block"><div data-bootcn-calendar></div></div>
+
+      <h3 class="h6 mt-3">Context menu</h3>
+      <div data-bootcn-context-menu>
+        <div data-bootcn-context-trigger class="d-flex align-items-center justify-content-center text-body-secondary border rounded" style="height:6rem;max-width:24rem;border-style:dashed!important;border-color:hsl(var(--border))!important">Right-click here</div>
+        <div data-bootcn-context-content hidden>
+          <button data-bootcn-context-item onclick="bootcn.toast('Opened')">Open</button>
+          <button data-bootcn-context-item onclick="bootcn.toast('Renaming…')">Rename</button>
+          <button data-bootcn-context-item data-disabled>Duplicate</button>
+          <hr>
+          <button data-bootcn-context-item class="text-danger" onclick="bootcn.toast.error('Deleted')">Delete</button>
+        </div>
+      </div>
+
+      <h3 class="h6 mt-3">Hover card</h3>
+      <p class="mb-0">Created by <span data-bootcn-hovercard>
+        <a data-bootcn-hovercard-trigger href="#" class="fw-medium">@sofia</a>
+        <template data-bootcn-hovercard-content>
+          <div class="d-flex gap-2"><span class="bootcn-avatar">SC</span>
+            <div><div class="fw-semibold">Sofia Chen</div>
+            <div class="text-body-secondary">Joined March 2024</div>
+            <p class="mb-0 mt-1">Product designer building calm tools at Acme.</p></div></div>
+        </template></span> — hover to preview.</p>
     </section>
   </div>
 
