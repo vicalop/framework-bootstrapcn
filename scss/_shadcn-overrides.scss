@@ -98,59 +98,47 @@
   background-color: hsl(var(--primary));
   border-color: hsl(var(--primary));
 }
-// Bootstrap bakes the checked icon as a static white SVG at compile time (fine in
-// light mode, where --primary is near-black). In dark mode --primary flips to
-// near-white, which makes that white icon disappear. currentColor doesn't help
-// here — an SVG referenced via background-image is a detached resource and
-// resolves currentColor to CSS's initial black, not the host element's color.
+// Bootstrap bakes the checked icon as a static white SVG at compile time
+// ($form-check-input-checked-color: $white, baked into the data-URI at Sass
+// compile time — see vendor/bootstrap/scss/_variables.scss). That's fine in
+// light mode, where the checked box fill (hsl(var(--primary)) below) is
+// near-black and the white glyph reads clearly against it. In dark mode
+// --primary flips to near-white, so that same white glyph disappears against
+// its own box.
 //
-// Fix: repaint the icon with mask-image instead of background-image. A mask
-// resolves from the source image's alpha channel only — the baked-in stroke/
-// fill color of Bootstrap's SVG (still whatever --bs-form-check-bg-image /
-// --bs-form-switch-bg already is) is irrelevant once it's used as a mask, so we
-// don't need to redefine those vars or bake in any color of our own.
+// *** SINGLE INTENTIONAL STATIC-COLOR EXCEPTION IN THIS THEME ***
+// Every other rule in this file drives color from hsl(var(--token)) so it's
+// reskinnable at runtime with no rebuild. This one can't be: the icon is a
+// data-URI SVG string, and a value baked into a data-URI is fixed at compile
+// time — a CSS var or hsl() cannot be interpolated into it at runtime. This
+// is the exact same constraint Bootstrap's own authors accepted for their
+// default `#fff` icon; we're following that convention, not deviating from
+// it, just re-baking the SVG with a value that also serves as the dark
+// checked-icon color: dark mode's --primary-foreground (240 5.9% 10%), whose
+// hex equivalent is #18181b. If dark --primary-foreground is ever retuned to
+// a different value, this literal must be updated to match by hand.
 //
-// Trade-off (verified in-browser): CSS mask clips an element's ENTIRE paint —
-// background-color, border, box-shadow, and outline all get cut to the mask's
-// alpha shape, not just background-image. There's no way around this on a bare
-// <input> (no ::before/::after on replaced elements, no markup changes here),
-// so once masked, the control's own "filled box" background is gone — the mask
-// reveals whatever is behind the input, not the input's own background-color.
-// That means the icon is effectively read against the page's own
-// hsl(var(--background)), not against the control's --primary fill, so we color
-// it with hsl(var(--foreground)) (the token defined to read against
-// --background) rather than --primary-foreground (defined to read against
-// --primary, a relationship that no longer holds once the fill is masked away).
-// Measured contrast: --primary-foreground on dark --background ≈ 1.12:1
-// (functionally invisible, same as the original bug); --foreground on dark
-// --background ≈ 19:1. Still 100% token-driven — no hex/rgb literal anywhere.
+// This preserves the actual shadcn look: a solid --primary-filled box with a
+// contrasting glyph on top (an earlier CSS-clip-based approach that avoided
+// baking in any color was tried and rejected here — clipping an element's
+// paint down to the icon's alpha shape takes the box's own fill down with
+// it, leaving a floating glyph with no filled box, which is the regression
+// this fix restores). We only redefine Bootstrap's own icon variables
+// (--bs-form-check-bg-image for checkbox + radio, --bs-form-switch-bg for
+// the switch) with the identical SVG geometry Bootstrap ships (same
+// viewBox/path/circle — verified against
+// vendor/bootstrap/scss/_variables.scss and the compiled
+// dist/css/bootstrap-shadcn.css), swapping only the color. background-image
+// itself is left alone; it already reads from these same vars.
 [data-bs-theme="dark"] {
   .form-check-input:not([type="radio"]):checked {
-    background-image: none;
-    mask-image: var(--bs-form-check-bg-image);
-    -webkit-mask-image: var(--bs-form-check-bg-image);
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
-    background-color: hsl(var(--foreground));
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%2318181b' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
   }
   .form-check-input[type="radio"]:checked {
-    background-image: none;
-    mask-image: var(--bs-form-check-bg-image);
-    -webkit-mask-image: var(--bs-form-check-bg-image);
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
-    background-color: hsl(var(--foreground));
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%2318181b'/%3e%3c/svg%3e");
   }
   .form-switch .form-check-input:checked {
-    background-image: none;
-    mask-image: var(--bs-form-switch-bg);
-    -webkit-mask-image: var(--bs-form-switch-bg);
-    mask-repeat: no-repeat;
-    mask-position: right center;
-    mask-size: contain;
-    background-color: hsl(var(--foreground));
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2318181b'/%3e%3c/svg%3e");
   }
 }
 
