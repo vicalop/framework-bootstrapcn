@@ -79,7 +79,7 @@
       <p>A bare <a href="#">text link</a> should be neutral (near-black / near-white), not blue.</p>
       <p><span class="text-primary">.text-primary</span> ·
          <span class="text-danger">.text-danger</span> ·
-         <span class="badge bg-primary">bg-primary</span> ·
+         <span class="badge text-bg-primary">bg-primary</span> ·
          <span class="badge bg-danger">bg-danger</span></p>
     </section>
 
