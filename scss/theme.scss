@@ -4,8 +4,8 @@
 // 1. Bootstrap functions (needed by any Sass var overrides below)
 @import "../vendor/bootstrap/scss/functions";
 
-// 2. Structural Sass variable overrides (Task 4) — added later
-// @import "bootstrap-overrides";
+// 2. Structural Sass variable overrides (must precede the Bootstrap import)
+@import "bootstrap-overrides";
 
 // 3. Full Bootstrap build
 @import "../vendor/bootstrap/scss/bootstrap";
