@@ -10,9 +10,9 @@
 // 3. Full Bootstrap build
 @import "../vendor/bootstrap/scss/bootstrap";
 
-// 4. shadcn runtime token layers (Task 2) — added later
-// @import "tokens-light";
-// @import "tokens-dark";
+// 4. shadcn runtime token layers
+@import "tokens-light";
+@import "tokens-dark";
 
 // 5. Bootstrap variable remap → shadcn tokens (Task 3) — added later
 // @import "bs-variable-map";
