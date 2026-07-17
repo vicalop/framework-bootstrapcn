@@ -52,17 +52,23 @@ textarea.form-control {
   min-height: auto;
 }
 
-// --- Focus ring: shadcn = 2px ring in --ring color, offset from the control ---
-:focus-visible,
+// --- Focus ring ---
+// shadcn v4: the control's border turns --ring and a soft 3px translucent ring
+// (ring/50) hugs it — NO offset. An offset outline layered on top of the input's
+// own 1px border reads as a double border, so bordered controls use box-shadow.
+// Generic focusable elements (links, etc.) that have no border get a plain outline.
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
 .form-control:focus,
 .form-select:focus,
 .form-check-input:focus,
 .btn:focus-visible,
 .btn-check:focus-visible + .btn {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-  box-shadow: none;
+  outline: none;
   border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 3px hsl(var(--ring) / .5);
 }
 
 // Bootstrap colors bare links via --bs-link-color-rgb (an RGB triplet our
