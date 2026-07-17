@@ -36,6 +36,15 @@
             <label class="form-label" for="f-user">Username</label>
             <input class="form-control" id="f-user" value="sofiachen">
           </div>
+          <div class="col-sm-6">
+            <label class="form-label d-block" for="f-role">Role</label>
+            <select class="form-select" id="f-role" data-bootcn-combobox data-placeholder="Select role…" data-search-placeholder="Search roles…">
+              <option value="owner" selected>Owner</option>
+              <option value="admin">Admin</option>
+              <option value="member">Member</option>
+              <option value="viewer">Viewer</option>
+            </select>
+          </div>
           <div class="col-12">
             <label class="form-label" for="f-email">Email</label>
             <input class="form-control" id="f-email" type="email" value="sofia@acme.com">
@@ -49,7 +58,7 @@
       </div>
       <div class="card-footer bg-transparent d-flex justify-content-end gap-2">
         <button class="btn btn-outline-secondary">Cancel</button>
-        <button class="btn btn-primary">Save changes</button>
+        <button class="btn btn-primary" onclick="bootcn.toast.success('Profile saved', {description:'Your changes have been saved.'})">Save changes</button>
       </div>
     </div>
   </div>
@@ -82,7 +91,7 @@
         <?php endforeach; ?>
       </div>
       <div class="card-footer bg-transparent d-flex justify-content-end">
-        <button class="btn btn-primary">Save preferences</button>
+        <button class="btn btn-primary" onclick="bootcn.toast.success('Preferences updated')">Save preferences</button>
       </div>
     </div>
   </div>

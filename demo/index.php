@@ -46,8 +46,10 @@
           <input type="email" class="form-control" placeholder="you@example.com">
         </div>
         <div class="col-md-4">
-          <label class="form-label">Role</label>
-          <select class="form-select"><option>Admin</option><option>User</option></select>
+          <label class="form-label d-block">Role</label>
+          <select class="form-select" data-bootcn-combobox data-placeholder="Select role…">
+            <option value="admin">Admin</option><option value="user">User</option><option value="viewer">Viewer</option>
+          </select>
         </div>
         <div class="col-md-4 d-flex align-items-end gap-3">
           <div class="form-check"><input class="form-check-input" type="checkbox" id="c1" checked><label class="form-check-label" for="c1">Check</label></div>
@@ -102,9 +104,46 @@
       <table class="table"><thead><tr><th>Name</th><th>Role</th></tr></thead>
         <tbody><tr><td>Ada</td><td>Admin</td></tr><tr><td>Linus</td><td>User</td></tr></tbody></table>
     </section>
+
+    <section class="mb-4">
+      <h2 class="h5">bootcn components <span class="badge text-bg-secondary align-middle">phase 2</span></h2>
+
+      <h3 class="h6 mt-3">Avatars</h3>
+      <span class="bootcn-avatar"><span>SC</span></span>
+      <span class="bootcn-avatar bootcn-avatar-sm"><span>JL</span></span>
+      <span class="bootcn-avatar bootcn-avatar-lg"><span>IN</span></span>
+
+      <h3 class="h6 mt-3">Toasts</h3>
+      <button class="btn btn-outline-secondary btn-sm" onclick="bootcn.toast('Link copied')">Default</button>
+      <button class="btn btn-outline-secondary btn-sm" onclick="bootcn.toast.success('Changes saved', {description:'Your profile is up to date.'})">Success</button>
+      <button class="btn btn-outline-secondary btn-sm" onclick="bootcn.toast.error('Could not save', {description:'Check your connection.'})">Error</button>
+      <button class="btn btn-outline-secondary btn-sm" onclick="bootcn.toast('Event deleted', {action:{label:'Undo', onClick(){bootcn.toast.success('Restored')}}})">With action</button>
+
+      <h3 class="h6 mt-3">Combobox</h3>
+      <select class="form-select" data-bootcn-combobox data-placeholder="Select framework…" data-search-placeholder="Search framework…">
+        <option value="" disabled selected hidden></option>
+        <option value="next">Next.js</option><option value="svelte">SvelteKit</option>
+        <option value="nuxt">Nuxt</option><option value="remix">Remix</option><option value="astro">Astro</option>
+      </select>
+
+      <h3 class="h6 mt-3">Command palette</h3>
+      <button class="btn btn-outline-secondary btn-sm" onclick="bootcn.command.open()">Open (⌘K)</button>
+      <div data-bootcn-command hidden>
+        <div data-bootcn-command-group="Navigation">
+          <button data-bootcn-command-item data-href="dashboard.php" data-shortcut="G D">Go to Dashboard</button>
+          <button data-bootcn-command-item data-href="users.php" data-shortcut="G U">Go to Users</button>
+          <button data-bootcn-command-item data-href="settings.php" data-shortcut="G S">Go to Settings</button>
+        </div>
+        <div data-bootcn-command-group="Actions">
+          <button data-bootcn-command-item data-id="copy">Copy current URL</button>
+          <button data-bootcn-command-item data-id="theme">Toggle theme</button>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script src="/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/dist/js/bootcn.js"></script>
   <script>
     (function () {
       var root = document.documentElement;
@@ -116,6 +155,12 @@
         localStorage.setItem('theme', next);
       });
     })();
+    window.addEventListener('load', function () {
+      if (window.bootcn && bootcn.command) bootcn.command.onSelect = function (item) {
+        if (item.id === 'theme') document.getElementById('themeToggle').click();
+        else if (item.id === 'copy') bootcn.toast('URL copied');
+      };
+    });
   </script>
 </body>
 </html>

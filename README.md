@@ -19,6 +19,51 @@ npm run watch        # recompile on change during development
 
 Toggle dark mode by setting `data-bs-theme="dark"` on `<html>` (or any container).
 
+## `bootcn` — JavaScript components (phase 2)
+
+Net-new shadcn components that Bootstrap doesn't ship. Load `bootcn.js` **after**
+Bootstrap's bundle; it auto-inits `data-bootcn-*` markup and exposes a `bootcn`
+global.
+
+```html
+<script src="/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/dist/js/bootcn.min.js"></script>
+```
+
+**Toasts** (Sonner-style) — imperative:
+```js
+bootcn.toast("Link copied");
+bootcn.toast.success("Changes saved", { description: "You're all set." });
+bootcn.toast.error("Could not save", { action: { label: "Retry", onClick() {} } });
+```
+
+**Avatar** — CSS + initials fallback when the image is missing/broken:
+```html
+<span class="bootcn-avatar"><img src="…" alt="Sofia"><span>SC</span></span>
+```
+
+**Combobox** — progressively enhances a native `<select>` (falls back to it with
+JS off; writes back and fires `change`, so forms just work):
+```html
+<select class="form-select" data-bootcn-combobox data-placeholder="Select framework…">
+  <option value="next">Next.js</option> …
+</select>
+```
+
+**Command palette** — opens on ⌘K / Ctrl+K (or `bootcn.command.open()`):
+```html
+<div data-bootcn-command hidden>
+  <div data-bootcn-command-group="Navigation">
+    <button data-bootcn-command-item data-href="/dashboard" data-shortcut="G D">Dashboard</button>
+  </div>
+</div>
+```
+Items with `data-href` navigate; otherwise set `bootcn.command.onSelect = item => {…}`.
+
+Batch 1 covers Avatar, Toasts, Combobox, Command. Later batches (Calendar, Date
+Picker, Data Table, Context Menu, Hover Card, Input OTP, Menubar, Navigation
+Menu, Resizable, Scroll Area, Sidebar) build on the same `bootcn` foundation.
+
 ## Updating Bootstrap
 
 Bump `bootstrap` in `package.json`, then `npm install && npm run vendor:refresh && npm run build`.

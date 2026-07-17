@@ -19,3 +19,9 @@
 
 // 6. Surgical CSS overrides (must be last)
 @import "shadcn-overrides";
+
+// 7. bootcn net-new components (phase 2)
+@import "bootcn-avatar";
+@import "bootcn-toast";
+@import "bootcn-combobox";
+@import "bootcn-command";

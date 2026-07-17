@@ -1,0 +1,78 @@
+// bootcn Command palette
+.bootcn-command-modal .modal-dialog { max-width: 40rem; }
+.bootcn-command {
+  padding: 0;
+  overflow: hidden;
+  background: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  border: 1px solid hsl(var(--border));
+}
+.bootcn-command-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.bootcn-command-search-wrap > svg {
+  position: absolute;
+  left: 1rem;
+  width: 1.1rem; height: 1.1rem;
+  color: hsl(var(--muted-foreground));
+  pointer-events: none;
+}
+.bootcn-command-input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font-size: .95rem;
+  padding: 1rem 1rem 1rem 2.75rem;
+}
+.bootcn-command-list {
+  max-height: 24rem;
+  overflow-y: auto;
+  padding: .5rem;
+}
+.bootcn-command-group[hidden] { display: none; }
+.bootcn-command-group + .bootcn-command-group { margin-top: .25rem; }
+.bootcn-command-group-label {
+  padding: .5rem .625rem .25rem;
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+.bootcn-command-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: .5rem .625rem;
+  border-radius: calc(var(--radius) - 4px);
+  font-size: .875rem;
+  cursor: pointer;
+}
+.bootcn-command-item[hidden] { display: none; }
+.bootcn-command-item.is-active { background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); }
+.bootcn-command-kbd {
+  flex: 0 0 auto;
+  font-size: .6875rem;
+  padding: .15rem .35rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: calc(var(--radius) - 4px);
+  color: hsl(var(--muted-foreground));
+  background: hsl(var(--muted));
+}
+.bootcn-command-empty {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .875rem;
+  color: hsl(var(--muted-foreground));
+}

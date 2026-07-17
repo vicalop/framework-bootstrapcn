@@ -42,7 +42,8 @@ $nav = [
       <button class="icon-btn sidebar-toggle" type="button" id="navToggle" aria-label="Open navigation"><?= icon('menu') ?></button>
       <div class="topbar-search">
         <?= icon('search') ?>
-        <input type="search" class="form-control" placeholder="Search…" aria-label="Search">
+        <input type="text" class="form-control" placeholder="Search…" aria-label="Search" readonly
+               style="cursor:pointer" onclick="window.bootcn && bootcn.command && bootcn.command.open()">
         <span class="kbd">⌘K</span>
       </div>
       <div class="ms-auto d-flex align-items-center gap-1">

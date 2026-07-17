@@ -1,0 +1,28 @@
+// bootcn Avatar
+.bootcn-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1;
+  user-select: none;
+}
+.bootcn-avatar > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bootcn-avatar > img.is-hidden { display: none; }
+.bootcn-avatar-sm { width: 2rem; height: 2rem; font-size: .75rem; }
+.bootcn-avatar-lg { width: 3.5rem; height: 3.5rem; font-size: 1rem; }

@@ -11,7 +11,8 @@
     "build:css": "sass scss/theme.scss dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps",
     "build:min": "sass scss/theme.scss dist/css/bootstrap-shadcn.min.css --style=compressed --no-source-map --quiet-deps",
     "prefix": "postcss dist/css/bootstrap-shadcn.css dist/css/bootstrap-shadcn.min.css --replace --use autoprefixer",
-    "build": "npm run build:css && npm run build:min && npm run prefix && npm run copy:js && npm run copy:fonts",
+    "build:js": "esbuild js/src/index.js --bundle --format=iife --outfile=dist/js/bootcn.js && esbuild js/src/index.js --bundle --format=iife --minify --outfile=dist/js/bootcn.min.js",
+    "build": "npm run build:css && npm run build:min && npm run prefix && npm run build:js && npm run copy:js && npm run copy:fonts",
     "watch": "sass --watch scss/theme.scss:dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps"
   },
   "browserslist": [
@@ -22,6 +23,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "bootstrap": "^5.3.3",
+    "esbuild": "^0.23.1",
     "postcss": "^8.4.0",
     "postcss-cli": "^11.0.0",
     "sass": "^1.77.0",
