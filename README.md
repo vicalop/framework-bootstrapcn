@@ -60,9 +60,25 @@ JS off; writes back and fires `change`, so forms just work):
 ```
 Items with `data-href` navigate; otherwise set `bootcn.command.onSelect = item => {…}`.
 
-Batch 1 covers Avatar, Toasts, Combobox, Command. Later batches (Calendar, Date
-Picker, Data Table, Context Menu, Hover Card, Input OTP, Menubar, Navigation
-Menu, Resizable, Scroll Area, Sidebar) build on the same `bootcn` foundation.
+**More components** (all auto-init from `data-bootcn-*`; see the kitchen-sink
+`demo/index.php` for live markup):
+
+| Component | Markup / API |
+|---|---|
+| Input OTP | `<input data-bootcn-otp data-length="6">` (keeps full value in the input) |
+| Calendar | `<div data-bootcn-calendar data-selected="2026-07-15">` |
+| Date Picker | `<input data-bootcn-datepicker>` → button + popover calendar |
+| Context Menu | `<div data-bootcn-context-menu>` with a `-trigger` and hidden `-content` |
+| Hover Card | `data-bootcn-hovercard` + a `-trigger`; put content in a `<template data-bootcn-hovercard-content>` |
+| Scroll Area | `class="bootcn-scroll-area"` (CSS-only, thin token scrollbars) |
+| Resizable | `<div data-bootcn-resizable>` with `[data-bootcn-panel]` children (`data-direction="vertical"` for rows) |
+| Menubar | `<div data-bootcn-menubar>` of Bootstrap dropdowns; hover-switch + arrow nav |
+| Navigation Menu | `<nav data-bootcn-navmenu>` with `.bootcn-navmenu-item` (trigger + content panel) |
+| Data Table | `<table data-bootcn-datatable data-page-size="10">`, `<th data-sortable>` (`data-sort="number"`) — adds filter, sort, pagination |
+| Sidebar | `<aside data-bootcn-sidebar>` + a `[data-bootcn-sidebar-toggle]` button — collapsible rail, persisted; mobile overlay |
+
+Every component reads from the runtime tokens, so all of them theme in light and
+dark automatically.
 
 ## Updating Bootstrap
 

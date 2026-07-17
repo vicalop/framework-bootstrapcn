@@ -211,6 +211,32 @@
         <a class="bootcn-navmenu-link" href="#">Docs</a>
         <a class="bootcn-navmenu-link" href="#">Pricing</a>
       </nav>
+
+      <h3 class="h6 mt-3">Data table</h3>
+      <div style="max-width:40rem">
+        <table class="table align-middle" data-bootcn-datatable data-page-size="4">
+          <thead><tr><th data-sortable>Name</th><th data-sortable>Email</th><th data-sortable data-sort="number">Amount</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Olivia Martin</td><td>olivia@email.com</td><td>$1,999.00</td><td><span class="badge text-bg-secondary">Paid</span></td></tr>
+            <tr><td>Jackson Lee</td><td>jackson@email.com</td><td>$39.00</td><td><span class="badge text-bg-secondary">Paid</span></td></tr>
+            <tr><td>Isabella Nguyen</td><td>isabella@email.com</td><td>$299.00</td><td><span class="badge border bg-transparent text-body-secondary">Pending</span></td></tr>
+            <tr><td>William Kim</td><td>will@email.com</td><td>$99.00</td><td><span class="badge text-bg-secondary">Paid</span></td></tr>
+            <tr><td>Sofia Davis</td><td>sofia@email.com</td><td>$4,200.00</td><td><span class="badge border bg-transparent text-body-secondary">Pending</span></td></tr>
+            <tr><td>Ava Brown</td><td>ava@email.com</td><td>$12.00</td><td><span class="badge text-bg-secondary">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="h6 mt-3">Sidebar (collapsible)</h3>
+      <button class="btn btn-outline-secondary btn-sm mb-2" data-bootcn-sidebar-toggle>Toggle sidebar</button>
+      <div class="d-flex card overflow-hidden" style="height:12rem;max-width:36rem">
+        <aside data-bootcn-sidebar class="p-2 border-end" style="border-color:hsl(var(--border))!important">
+          <?php foreach (['⌂'=>'Dashboard','◱'=>'Users','⚙'=>'Settings'] as $i=>$l): ?>
+            <a class="d-flex align-items-center gap-2 p-2 rounded text-decoration-none text-body" href="#" style="white-space:nowrap"><span><?= $i ?></span><span class="bootcn-sidebar-label"><?= $l ?></span></a>
+          <?php endforeach; ?>
+        </aside>
+        <div class="p-3 flex-grow-1 text-body-secondary">Content area</div>
+      </div>
     </section>
   </div>
 

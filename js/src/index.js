@@ -11,6 +11,8 @@ import { HoverCard } from './hovercard.js';
 import { Resizable } from './resizable.js';
 import { Menubar } from './menubar.js';
 import { NavigationMenu } from './navmenu.js';
+import { DataTable } from './datatable.js';
+import { Sidebar } from './sidebar.js';
 
 const bootcn = {
   version: '0.1.0',
@@ -26,6 +28,8 @@ const bootcn = {
   Resizable,
   Menubar,
   NavigationMenu,
+  DataTable,
+  Sidebar,
   command: null, // set to the first Command instance on init (bootcn.command.open())
   init(root) {
     root = root || document;
@@ -39,6 +43,8 @@ const bootcn = {
     root.querySelectorAll('[data-bootcn-resizable]').forEach((el) => Resizable.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-menubar]').forEach((el) => Menubar.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-navmenu]').forEach((el) => NavigationMenu.getOrCreate(el));
+    root.querySelectorAll('table[data-bootcn-datatable]').forEach((el) => DataTable.getOrCreate(el));
+    root.querySelectorAll('[data-bootcn-sidebar]').forEach((el) => Sidebar.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-command]').forEach((el) => {
       const inst = Command.getOrCreate(el);
       if (!bootcn.command) bootcn.command = inst;
