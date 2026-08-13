@@ -1,72 +1,10 @@
-/* Demo-only layout scaffolding for the app shell + example pages.
-   Component styling comes from the compiled theme; this file only lays out
-   the sidebar/topbar chrome and a few shadcn-flavoured helpers the demo needs.
-   All colors reference the theme's runtime tokens so light/dark both work. */
-
-:root { --sidebar-w: 15.5rem; --topbar-h: 3.5rem; }
+/* Demo-only helpers — app shell/sidebar/topbar styling ships in bootstrap-shadcn.min.css. */
 
 .lucide { flex: 0 0 auto; vertical-align: -0.125em; }
 
-/* ---- App shell ---- */
-.app-shell { min-height: 100vh; }
+.main-scroll { overflow-y: auto; flex: 1 1 auto; }
+.content { padding: 1.5rem; max-width: 80rem; width: 100%; margin: 0 auto; }
 
-.sidebar {
-  width: var(--sidebar-w);
-  flex: 0 0 var(--sidebar-w);
-  border-right: 1px solid hsl(var(--sidebar-border));
-  background: hsl(var(--sidebar));
-  color: hsl(var(--sidebar-foreground));
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.sidebar-brand {
-  display: flex; align-items: center; gap: .625rem;
-  height: var(--topbar-h);
-  padding: 0 1rem;
-  border-bottom: 1px solid hsl(var(--sidebar-border));
-  font-weight: 600; font-size: .95rem;
-}
-.brand-mark {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 1.75rem; height: 1.75rem; font-size: 1rem;
-  border-radius: calc(var(--radius) - 2px);
-  background: hsl(var(--primary)); color: hsl(var(--primary-foreground));
-}
-.sidebar-nav { padding: .75rem; overflow-y: auto; flex: 1 1 auto; }
-.nav-label {
-  padding: .5rem .75rem .25rem;
-  font-size: .6875rem; font-weight: 600; letter-spacing: .04em;
-  text-transform: uppercase; color: hsl(var(--muted-foreground));
-}
-.side-link {
-  display: flex; align-items: center; gap: .625rem;
-  padding: .5rem .75rem; margin-bottom: .125rem;
-  border-radius: calc(var(--radius) - 2px);
-  font-size: .875rem; font-weight: 500; line-height: 1.2;
-  color: hsl(var(--sidebar-foreground));
-  text-decoration: none;
-  transition: background-color .12s ease, color .12s ease;
-}
-.side-link .lucide { font-size: 1rem; color: hsl(var(--muted-foreground)); }
-.side-link:hover { background: hsl(var(--sidebar-accent)); color: hsl(var(--sidebar-accent-foreground)); }
-.side-link.active { background: hsl(var(--sidebar-accent)); color: hsl(var(--sidebar-accent-foreground)); font-weight: 600; }
-.side-link.active .lucide { color: hsl(var(--sidebar-accent-foreground)); }
-.sidebar-foot { padding: .75rem; border-top: 1px solid hsl(var(--sidebar-border)); }
-
-/* ---- Main column ---- */
-.main-col { min-width: 0; flex: 1 1 auto; display: flex; flex-direction: column; }
-.topbar {
-  height: var(--topbar-h);
-  border-bottom: 1px solid hsl(var(--border));
-  background: hsl(var(--background) / .8);
-  backdrop-filter: saturate(180%) blur(6px);
-  position: sticky; top: 0; z-index: 5;
-  display: flex; align-items: center; gap: .75rem;
-  padding: 0 1rem;
-}
 .topbar-search { position: relative; max-width: 20rem; width: 100%; }
 .topbar-search .lucide {
   position: absolute; left: .625rem; top: 50%; transform: translateY(-50%);
@@ -87,7 +25,6 @@
   background: transparent; color: hsl(var(--foreground)); cursor: pointer;
 }
 .icon-btn:hover { background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); }
-.content { padding: 1.5rem; max-width: 80rem; width: 100%; margin: 0 auto; }
 
 /* ---- Bits ---- */
 .avatar {
@@ -126,12 +63,3 @@
 .auth-card { width: 100%; max-width: 24rem; }
 .auth-divider { display: flex; align-items: center; gap: .75rem; color: hsl(var(--muted-foreground)); font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
 .auth-divider::before, .auth-divider::after { content: ""; height: 1px; flex: 1; background: hsl(var(--border)); }
-
-/* mobile: collapse the sidebar into an offcanvas */
-.sidebar-toggle { display: none; }
-@media (max-width: 768px) {
-  .sidebar { position: fixed; left: 0; top: 0; z-index: 1050; transform: translateX(-100%); transition: transform .2s ease; box-shadow: var(--bs-box-shadow-lg); }
-  .app-shell.nav-open .sidebar { transform: translateX(0); }
-  .app-shell.nav-open::after { content: ""; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 1040; }
-  .sidebar-toggle { display: inline-flex; }
-}

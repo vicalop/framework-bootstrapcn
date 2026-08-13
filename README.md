@@ -135,7 +135,47 @@ Items with `data-href` navigate; otherwise set `bootcn.command.onSelect = item =
 | Menubar | `<div data-bootcn-menubar>` of Bootstrap dropdowns; hover-switch + arrow nav |
 | Navigation Menu | `<nav data-bootcn-navmenu>` with `.bootcn-navmenu-item` (trigger + content panel) |
 | Data Table | `<table data-bootcn-datatable data-page-size="10">`, `<th data-sortable>` — adds filter, sort, pagination |
-| Sidebar | `<aside data-bootcn-sidebar>` + a `[data-bootcn-sidebar-toggle]` button — collapsible rail, persisted; mobile overlay |
+| Sidebar | App shell layout — see [App shell & sidebar](#app-shell--sidebar) below |
+
+---
+
+## App shell & sidebar
+
+The theme ships shadcn-style app layout classes (sidebar tokens, nav links, mobile
+overlay). Wrap your page like this:
+
+```html
+<div class="bootcn-app-shell d-flex">
+  <aside class="bootcn-sidebar" data-bootcn-sidebar>
+    <div class="bootcn-sidebar-header">
+      <span class="bootcn-sidebar-brand-mark">A</span>
+      <span class="bootcn-sidebar-label">Acme Inc</span>
+    </div>
+    <nav class="bootcn-sidebar-nav">
+      <div class="bootcn-sidebar-group-label">Platform</div>
+      <a class="bootcn-sidebar-link" href="/" aria-current="page">
+        <svg><!-- icon --></svg>
+        <span class="bootcn-sidebar-label">Dashboard</span>
+      </a>
+    </nav>
+    <div class="bootcn-sidebar-footer">
+      <a class="bootcn-sidebar-link" href="/logout">…</a>
+    </div>
+  </aside>
+
+  <div class="bootcn-main">
+    <header class="bootcn-topbar">
+      <button type="button" class="bootcn-sidebar-toggle" data-bootcn-sidebar-toggle aria-label="Menu">☰</button>
+      …
+    </header>
+    <main class="p-4">…</main>
+  </div>
+</div>
+```
+
+`data-bootcn-sidebar` + `[data-bootcn-sidebar-toggle]` collapse the rail on desktop
+(persisted) and slide the sidebar in on mobile. Active nav items: `aria-current="page"`
+or class `active`.
 
 ---
 

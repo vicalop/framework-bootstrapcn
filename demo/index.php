@@ -229,13 +229,15 @@
 
       <h3 class="h6 mt-3">Sidebar (collapsible)</h3>
       <button class="btn btn-outline-secondary btn-sm mb-2" data-bootcn-sidebar-toggle>Toggle sidebar</button>
-      <div class="d-flex card overflow-hidden" style="height:12rem;max-width:36rem">
-        <aside data-bootcn-sidebar class="p-2 border-end" style="border-color:hsl(var(--border))!important">
-          <?php foreach (['⌂'=>'Dashboard','◱'=>'Users','⚙'=>'Settings'] as $i=>$l): ?>
-            <a class="d-flex align-items-center gap-2 p-2 rounded text-decoration-none text-body" href="#" style="white-space:nowrap"><span><?= $i ?></span><span class="bootcn-sidebar-label"><?= $l ?></span></a>
-          <?php endforeach; ?>
+      <div class="bootcn-app-shell d-flex card overflow-hidden" style="height:12rem;max-width:36rem">
+        <aside data-bootcn-sidebar class="bootcn-sidebar">
+          <nav class="bootcn-sidebar-nav py-2">
+            <?php foreach (['⌂'=>'Dashboard','◱'=>'Users','⚙'=>'Settings'] as $i=>$l): ?>
+              <a class="bootcn-sidebar-link" href="#"><span class="bootcn-sidebar-icon"><?= $i ?></span><span class="bootcn-sidebar-label"><?= $l ?></span></a>
+            <?php endforeach; ?>
+          </nav>
         </aside>
-        <div class="p-3 flex-grow-1 text-body-secondary">Content area</div>
+        <div class="bootcn-main p-3 text-body-secondary">Content area</div>
       </div>
     </section>
   </div>

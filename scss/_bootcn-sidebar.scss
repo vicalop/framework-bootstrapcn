@@ -1,0 +1,188 @@
+// bootcn app shell + sidebar — shadcn-style layout (matches lopezcloud / Tailwind sidebar tokens).
+:root {
+  --bootcn-sidebar-width: 16rem;
+  --bootcn-sidebar-rail: 3.5rem;
+  --bootcn-topbar-height: 3.5rem;
+}
+
+.bootcn-app-shell {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.bootcn-sidebar {
+  width: var(--bootcn-sidebar-width);
+  flex: 0 0 var(--bootcn-sidebar-width);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  background-color: hsl(var(--sidebar));
+  color: hsl(var(--sidebar-foreground));
+  border-right: 1px solid hsl(var(--sidebar-border));
+  transition: width .2s ease, flex-basis .2s ease, transform .2s ease;
+}
+
+.bootcn-sidebar.is-collapsed {
+  width: var(--bootcn-sidebar-rail);
+  flex-basis: var(--bootcn-sidebar-rail);
+}
+
+.bootcn-sidebar.is-collapsed .bootcn-sidebar-label,
+.bootcn-sidebar.is-collapsed .bootcn-sidebar-hide {
+  display: none !important;
+}
+
+.bootcn-sidebar.is-collapsed .bootcn-sidebar-nav,
+.bootcn-sidebar.is-collapsed > .bootcn-sidebar-header,
+.bootcn-sidebar.is-collapsed > .bootcn-sidebar-footer {
+  overflow-x: hidden;
+}
+
+.bootcn-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  flex-shrink: 0;
+  height: var(--bootcn-topbar-height);
+  padding: 0 1rem;
+  border-bottom: 1px solid hsl(var(--sidebar-border));
+  font-weight: 600;
+  font-size: .875rem;
+}
+
+.bootcn-sidebar-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) - 2px);
+  background: hsl(var(--sidebar-primary));
+  color: hsl(var(--sidebar-primary-foreground));
+}
+
+.bootcn-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: .125rem;
+  padding: .75rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.bootcn-sidebar-group-label {
+  padding: .5rem .75rem .25rem;
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+.bootcn-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  padding: .5rem .75rem;
+  border-radius: calc(var(--radius) - 2px);
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: hsl(var(--sidebar-foreground));
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color .15s ease, color .15s ease;
+
+  svg,
+  .bootcn-sidebar-icon {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  &:hover {
+    background-color: hsl(var(--sidebar-accent));
+    color: hsl(var(--sidebar-accent-foreground));
+
+    svg,
+    .bootcn-sidebar-icon {
+      color: hsl(var(--sidebar-accent-foreground));
+    }
+  }
+
+  &.active,
+  &[aria-current="page"] {
+    background-color: hsl(var(--sidebar-accent));
+    color: hsl(var(--sidebar-accent-foreground));
+
+    svg,
+    .bootcn-sidebar-icon {
+      color: hsl(var(--sidebar-accent-foreground));
+    }
+  }
+}
+
+.bootcn-sidebar-footer {
+  flex-shrink: 0;
+  padding: .75rem;
+  border-top: 1px solid hsl(var(--sidebar-border));
+}
+
+.bootcn-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.bootcn-topbar {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-shrink: 0;
+  height: var(--bootcn-topbar-height);
+  padding: 0 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+  background-color: hsl(var(--background) / .8);
+  backdrop-filter: saturate(180%) blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.bootcn-sidebar-toggle {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .bootcn-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 1050;
+    transform: translateX(-100%);
+    box-shadow: var(--bs-box-shadow-lg);
+  }
+
+  .bootcn-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .bootcn-app-shell:has(.bootcn-sidebar.is-open)::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 1040;
+  }
+
+  .bootcn-sidebar-toggle {
+    display: inline-flex;
+  }
+}

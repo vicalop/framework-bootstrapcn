@@ -18,28 +18,28 @@ $nav = [
   <link rel="stylesheet" href="/demo/demo.css">
 </head>
 <body>
-<div class="app-shell d-flex" id="shell">
-  <aside class="sidebar">
-    <div class="sidebar-brand">
-      <span class="brand-mark"><?= icon('activity') ?></span>
-      <span>Acme Inc</span>
+<div class="bootcn-app-shell d-flex" id="shell">
+  <aside class="bootcn-sidebar" data-bootcn-sidebar>
+    <div class="bootcn-sidebar-header">
+      <span class="bootcn-sidebar-brand-mark"><?= icon('activity') ?></span>
+      <span class="bootcn-sidebar-label">Acme Inc</span>
     </div>
-    <nav class="sidebar-nav">
-      <div class="nav-label">Platform</div>
+    <nav class="bootcn-sidebar-nav">
+      <div class="bootcn-sidebar-group-label">Platform</div>
       <?php foreach ($nav as $item): ?>
-        <a class="side-link<?= $active === $item['key'] ? ' active' : '' ?>" href="<?= $item['href'] ?>">
-          <?= icon($item['icon']) ?><span><?= $item['label'] ?></span>
+        <a class="bootcn-sidebar-link<?= $active === $item['key'] ? ' active' : '' ?>" href="<?= $item['href'] ?>"<?= $active === $item['key'] ? ' aria-current="page"' : '' ?>>
+          <?= icon($item['icon']) ?><span class="bootcn-sidebar-label"><?= $item['label'] ?></span>
         </a>
       <?php endforeach; ?>
     </nav>
-    <div class="sidebar-foot">
-      <a class="side-link" href="login.php"><?= icon('logout') ?><span>Log out</span></a>
+    <div class="bootcn-sidebar-footer">
+      <a class="bootcn-sidebar-link" href="login.php"><?= icon('logout') ?><span class="bootcn-sidebar-label">Log out</span></a>
     </div>
   </aside>
 
-  <div class="main-col">
-    <header class="topbar">
-      <button class="icon-btn sidebar-toggle" type="button" id="navToggle" aria-label="Open navigation"><?= icon('menu') ?></button>
+  <div class="bootcn-main">
+    <header class="bootcn-topbar">
+      <button class="icon-btn bootcn-sidebar-toggle" type="button" data-bootcn-sidebar-toggle aria-label="Open navigation"><?= icon('menu') ?></button>
       <div class="topbar-search">
         <?= icon('search') ?>
         <input type="text" class="form-control" placeholder="Search…" aria-label="Search" readonly

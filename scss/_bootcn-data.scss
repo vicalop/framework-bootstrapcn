@@ -7,28 +7,3 @@
 .bootcn-dt-footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: .75rem; }
 .bootcn-dt-info { font-size: .875rem; color: hsl(var(--muted-foreground)); }
 .bootcn-dt-pager { display: flex; gap: .5rem; }
-
-// bootcn Sidebar (collapsible rail + mobile overlay)
-.bootcn-sidebar {
-  width: 16rem;
-  flex: 0 0 16rem;
-  overflow: hidden;
-  background-color: hsl(var(--sidebar));
-  color: hsl(var(--sidebar-foreground));
-  border-color: hsl(var(--sidebar-border));
-  transition: width .2s ease, flex-basis .2s ease, transform .2s ease;
-}
-.bootcn-sidebar.is-collapsed { width: 3.5rem; flex-basis: 3.5rem; }
-.bootcn-sidebar.is-collapsed .bootcn-sidebar-hide { display: none !important; }
-.bootcn-sidebar.is-collapsed .bootcn-sidebar-label { opacity: 0; }
-
-@media (max-width: 768px) {
-  .bootcn-sidebar {
-    position: fixed;
-    inset: 0 auto 0 0;
-    z-index: 1050;
-    transform: translateX(-100%);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1);
-  }
-  .bootcn-sidebar.is-open { transform: translateX(0); }
-}
