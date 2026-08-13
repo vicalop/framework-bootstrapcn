@@ -74,6 +74,41 @@ npm run watch        # recompile CSS on change during development
 
 Toggle dark mode by setting `data-bs-theme="dark"` on `<html>` (or any container).
 
+## Serve to projects via jsDelivr (GitHub route — no npm publish, no self-hosting)
+
+Best fit for pure-PHP projects that just want `<link>`/`<script>` tags with a
+version in the URL. jsDelivr serves any **public** GitHub repo by tag with
+correct MIME types and caching:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/css/bootstrap-shadcn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/js/bootcn.min.js"></script>
+```
+
+To update a project, bump `@v0.1.0` to the newer tag. Each tag is immutable, so
+old projects keep working.
+
+### Cutting a release
+
+jsDelivr serves files **as committed at the tag** and does not run the build,
+and `dist/` is gitignored on `main`. The
+[`Release to jsDelivr`](.github/workflows/release.yml) GitHub Action bridges
+that: on a version tag it builds `dist/` and attaches it to the tag (the build
+commit is reachable only via the tag, so `main` stays clean).
+
+```bash
+# 1. bump the version in package.json on main, commit, push
+# 2. tag it (must match package.json) and push the tag:
+git tag v0.1.1
+git push origin v0.1.1
+```
+
+The Action then builds and re-points `v0.1.1` at a commit containing `dist/`,
+and prints the ready-to-use jsDelivr URLs in its run summary. Requires the repo
+to be **public** and Actions to have write permission (`contents: write`, set in
+the workflow).
+
 ## `bootcn` — JavaScript components (phase 2)
 
 Net-new shadcn components that Bootstrap doesn't ship. Load `bootcn.js` **after**
