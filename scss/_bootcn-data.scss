@@ -13,9 +13,12 @@
   width: 16rem;
   flex: 0 0 16rem;
   overflow: hidden;
+  background-color: hsl(var(--sidebar));
+  color: hsl(var(--sidebar-foreground));
+  border-color: hsl(var(--sidebar-border));
   transition: width .2s ease, flex-basis .2s ease, transform .2s ease;
 }
-.bootcn-sidebar.is-collapsed { width: 3.75rem; flex-basis: 3.75rem; }
+.bootcn-sidebar.is-collapsed { width: 3.5rem; flex-basis: 3.5rem; }
 .bootcn-sidebar.is-collapsed .bootcn-sidebar-hide { display: none !important; }
 .bootcn-sidebar.is-collapsed .bootcn-sidebar-label { opacity: 0; }
 

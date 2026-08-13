@@ -1,7 +1,8 @@
 // Surgical CSS overrides — the shadcn details Bootstrap variables don't expose.
 // Everything references the runtime token layer, so light/dark both work.
 
-// --- Inter (shadcn's signature typeface), self-hosted variable font ---
+// --- System sans-serif (Tailwind v4 default stack). Inter remains available
+//     via @font-face for projects that opt in via brand overrides. ---
 // The .woff2 lives at dist/fonts/ (copied from assets/fonts/ by `npm run build`);
 // this file compiles to dist/css/, so the path is one level up then into fonts/.
 @font-face {
@@ -180,8 +181,8 @@ a:hover {
 // is the exact same constraint Bootstrap's own authors accepted for their
 // default `#fff` icon; we're following that convention, not deviating from
 // it, just re-baking the SVG with a value that also serves as the dark
-// checked-icon color: dark mode's --primary-foreground (240 5.9% 10%), whose
-// hex equivalent is #18181b. If dark --primary-foreground is ever retuned to
+// checked-icon color: dark mode's --primary-foreground (0 0% 9%), whose
+// hex equivalent is #171717. If dark --primary-foreground is ever retuned to
 // a different value, this literal must be updated to match by hand.
 //
 // This preserves the actual shadcn look: a solid --primary-filled box with a
@@ -198,13 +199,13 @@ a:hover {
 // itself is left alone; it already reads from these same vars.
 [data-bs-theme="dark"] {
   .form-check-input:not([type="radio"]):checked {
-    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%2318181b' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23171717' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
   }
   .form-check-input[type="radio"]:checked {
-    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%2318181b'/%3e%3c/svg%3e");
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23171717'/%3e%3c/svg%3e");
   }
   .form-switch .form-check-input:checked {
-    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2318181b'/%3e%3c/svg%3e");
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23171717'/%3e%3c/svg%3e");
   }
 }
 

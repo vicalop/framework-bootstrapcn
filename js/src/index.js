@@ -15,10 +15,10 @@ import { DataTable } from './datatable.js';
 import { Sidebar } from './sidebar.js';
 
 const bootcn = {
-  version: '0.1.0',
+  version: '0.2.0',
   // Version of the design-token contract (see tokens.json / TOKENS.md).
   // Bump on any token add/remove/rename so consumers can assert compatibility.
-  tokensVersion: '1.0.0',
+  tokensVersion: '1.1.0',
   toast,
   Toaster,
   Combobox,

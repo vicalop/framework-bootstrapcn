@@ -13,10 +13,10 @@ $box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0,
 
 // ---------------------------------------------------------------------------
 // Typography — shadcn/ui uses 14px (text-sm) as the base control/body size and
-// Inter as its signature typeface. Root stays 16px so rem-based spacing anchors
-// correctly; only the base font-size drops to 14px.
+// the system sans-serif stack (Tailwind v4 default). Root stays 16px so
+// rem-based spacing anchors correctly; only the base font-size drops to 14px.
 // ---------------------------------------------------------------------------
-$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-sans-serif: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $font-size-base: 0.875rem; // 14px
 
 // Heading scale (Tailwind text-4xl → text-lg), semibold, tight leading.
