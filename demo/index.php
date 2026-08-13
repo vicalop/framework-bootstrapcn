@@ -233,7 +233,7 @@
         <aside data-bootcn-sidebar class="bootcn-sidebar">
           <nav class="bootcn-sidebar-nav py-2">
             <?php foreach (['⌂'=>'Dashboard','◱'=>'Users','⚙'=>'Settings'] as $i=>$l): ?>
-              <a class="bootcn-sidebar-link" href="#"><span class="bootcn-sidebar-icon"><?= $i ?></span><span class="bootcn-sidebar-label"><?= $l ?></span></a>
+              <a class="bootcn-sidebar-link" href="#"><span class="bootcn-sidebar-icon" aria-hidden="true"><?= $i ?></span><span class="bootcn-sidebar-label"><?= $l ?></span></a>
             <?php endforeach; ?>
           </nav>
         </aside>

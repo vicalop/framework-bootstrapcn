@@ -154,7 +154,7 @@ overlay). Wrap your page like this:
     <nav class="bootcn-sidebar-nav">
       <div class="bootcn-sidebar-group-label">Platform</div>
       <a class="bootcn-sidebar-link" href="/" aria-current="page">
-        <svg><!-- icon --></svg>
+        <svg class="bootcn-icon" …><!-- layout-dashboard --></svg>
         <span class="bootcn-sidebar-label">Dashboard</span>
       </a>
     </nav>
@@ -176,6 +176,38 @@ overlay). Wrap your page like this:
 `data-bootcn-sidebar` + `[data-bootcn-sidebar-toggle]` collapse the rail on desktop
 (persisted) and slide the sidebar in on mobile. Active nav items: `aria-current="page"`
 or class `active`.
+
+---
+
+## Icons
+
+bootcn uses **[Lucide](https://lucide.dev/)** (24×24 stroke icons, `currentColor`).
+Add icons with inline SVG — no JS, no sprite CDN:
+
+```html
+<svg
+  class="bootcn-icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  <path d="M5 12h14"/><path d="M12 5v14"/>
+</svg>
+```
+
+Sizes: default `1rem`, or add `bootcn-icon-sm` / `bootcn-icon-lg`. Icons inherit
+color from buttons, links, and the topbar; sidebar links mute icons until
+hover/`aria-current="page"`.
+
+Full guide, accessibility notes, and the **curated copy-paste set** (menu, search,
+settings, trash, …): [`ICONS.md`](./ICONS.md) and
+[`icons/lucide-curated.md`](./icons/lucide-curated.md). Lucide is ISC-licensed —
+see [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md).
 
 ---
 

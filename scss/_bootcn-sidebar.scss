@@ -99,20 +99,31 @@
   white-space: nowrap;
   transition: background-color .15s ease, color .15s ease;
 
-  svg,
-  .bootcn-sidebar-icon {
+  // Sidebar nav icons — build on .bootcn-icon; muted by default, accent on hover/active.
+  .bootcn-icon,
+  .bootcn-sidebar-icon,
+  svg.bootcn-icon {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .bootcn-sidebar-icon:not(svg) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
     width: 1rem;
     height: 1rem;
-    color: hsl(var(--muted-foreground));
+    font-size: .875rem;
+    line-height: 1;
   }
 
   &:hover {
     background-color: hsl(var(--sidebar-accent));
     color: hsl(var(--sidebar-accent-foreground));
 
-    svg,
-    .bootcn-sidebar-icon {
+    .bootcn-icon,
+    .bootcn-sidebar-icon,
+    svg.bootcn-icon {
       color: hsl(var(--sidebar-accent-foreground));
     }
   }
@@ -122,8 +133,9 @@
     background-color: hsl(var(--sidebar-accent));
     color: hsl(var(--sidebar-accent-foreground));
 
-    svg,
-    .bootcn-sidebar-icon {
+    .bootcn-icon,
+    .bootcn-sidebar-icon,
+    svg.bootcn-icon {
       color: hsl(var(--sidebar-accent-foreground));
     }
   }

@@ -1,12 +1,10 @@
-/* Demo-only helpers — app shell/sidebar/topbar styling ships in bootstrap-shadcn.min.css. */
-
-.lucide { flex: 0 0 auto; vertical-align: -0.125em; }
+/* Demo-only helpers — app shell/sidebar/icon styling ships in bootstrap-shadcn.min.css. */
 
 .main-scroll { overflow-y: auto; flex: 1 1 auto; }
 .content { padding: 1.5rem; max-width: 80rem; width: 100%; margin: 0 auto; }
 
 .topbar-search { position: relative; max-width: 20rem; width: 100%; }
-.topbar-search .lucide {
+.topbar-search .bootcn-icon {
   position: absolute; left: .625rem; top: 50%; transform: translateY(-50%);
   font-size: 1rem; color: hsl(var(--muted-foreground)); pointer-events: none;
 }

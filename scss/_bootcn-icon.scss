@@ -1,0 +1,28 @@
+// bootcn icon hooks — Lucide-style inline SVGs (24×24, stroke, currentColor).
+// App authors paste Lucide paths into <svg class="bootcn-icon">…</svg>; see ICONS.md.
+
+svg.bootcn-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: -0.125em;
+  color: currentColor;
+}
+
+svg.bootcn-icon.bootcn-icon-sm {
+  width: .875rem;
+  height: .875rem;
+}
+
+svg.bootcn-icon.bootcn-icon-lg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+// Icon-only controls: label supplies accessible name.
+.btn svg.bootcn-icon:only-child,
+.icon-btn svg.bootcn-icon:only-child,
+.bootcn-sidebar-toggle svg.bootcn-icon:only-child {
+  vertical-align: middle;
+}
