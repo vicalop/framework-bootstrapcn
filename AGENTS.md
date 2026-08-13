@@ -16,6 +16,16 @@ contract, consumed by both the Bootstrap adapter and every `bootcn` component.
   `tokens.json` (machine-readable contract). See `TOKENS.md`.
 - Build output: `dist/` — **gitignored on `main`**, produced by `npm run build`.
 
+## Git workflow (repo owner's preference)
+
+- **Commit directly to `main` and push to `main`.** Do not create feature
+  branches, and do not open pull requests.
+- Make small, logical commits with clear messages; push them straight to `main`.
+- Never leave `main` for day-to-day work. The only other refs that exist are
+  release tags (`v*`), which are created only when explicitly requested (see the
+  release workflow below).
+- Do not force-push or rewrite `main` history.
+
 ## Build & verify
 
 ```bash
@@ -64,7 +74,7 @@ in the CDN assets — only `dist/` does).
 
 To cut a release (only when explicitly requested):
 
-1. Make and commit your source changes on a branch; get them merged to `main`.
+1. Make and commit your source changes directly on `main` and push them.
 2. On `main`, bump `version` in `package.json` (and the token schema version in
    `tokens.json` + `js/src/index.js` if tokens changed). Commit and push.
 3. Tag the release **matching `package.json`** and push the tag:
