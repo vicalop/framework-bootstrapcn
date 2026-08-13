@@ -1,0 +1,23 @@
+// Per-project brand overrides (Sass-source consumers).
+//
+// This layer is imported AFTER the light/dark token defaults, so anything you
+// set here wins. It ships empty so the default build is unchanged; a consuming
+// project that compiles from Sass can override its own copy of this partial (or
+// re-declare tokens after `@import "theme"`).
+//
+// Values are shadcn HSL channels: `H S% L%`, consumed as `hsl(var(--token))`.
+// Only override what you need — unset tokens keep the shadcn defaults.
+//
+// Example — a blue brand:
+//
+//   :root {
+//     --primary: 221.2 83.2% 53.3%;
+//     --primary-foreground: 210 40% 98%;
+//     --ring: 221.2 83.2% 53.3%;
+//     --radius: 0.5rem;
+//   }
+//   [data-bs-theme="dark"] {
+//     --primary: 217.2 91.2% 59.8%;
+//     --primary-foreground: 222.2 47.4% 11.2%;
+//     --ring: 224.3 76.3% 48%;
+//   }

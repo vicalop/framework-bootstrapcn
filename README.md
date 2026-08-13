@@ -1,16 +1,71 @@
 # bootstrap-shadcn-theme
 
-A shadcn/ui theme for Bootstrap 5.3, compiled from vendored Bootstrap Sass source.
+A shadcn/ui theme for Bootstrap 5.3, compiled from vendored Bootstrap Sass
+source — plus `bootcn`, a set of net-new vanilla-JS components. It's
+**token-driven**: the shadcn [design tokens](./TOKENS.md) are the reusable
+contract, consumed by both the Bootstrap adapter and every `bootcn` component,
+so the whole system rebrands and themes (light/dark) from a handful of
+variables. Built to be published once and reused across projects.
 
-## Build
+## Install & reuse across projects
+
+Pick whichever consumption path fits a project; all of them resolve to the same
+token-driven CSS + JS. Always **pin a version** so projects upgrade on purpose.
+
+**npm (bundler or Sass toolchain):**
+
+```bash
+npm install bootstrap-shadcn-theme bootstrap
+```
+
+```js
+import "bootstrap-shadcn-theme/css/min"; // compiled theme
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap-shadcn-theme";         // bootcn (auto-inits data-bootcn-*)
+```
+
+```scss
+@use "bootstrap-shadcn-theme/scss" as *; // scss/theme.scss (compile yourself)
+```
+
+**git tag (no registry needed — builds on install via the `prepare` hook):**
+
+```bash
+npm install github:vicalop/framework-bootstrapcn#v0.1.0
+```
+
+**CDN / plain HTML (served from the published package, version-pinned):**
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-shadcn-theme@0.1.0/dist/css/bootstrap-shadcn.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-shadcn-theme@0.1.0/dist/js/bootcn.min.js"></script>
+```
+
+The published package ships prebuilt `dist/` plus the `scss/` sources,
+`tokens.json`, and `brand.template.css`. Build artifacts are produced
+automatically on `npm publish`/`npm pack` and on git installs (`prepare` hook),
+so they are intentionally not committed to the repo.
+
+### Per-project branding
+
+Override only the tokens you need; unset tokens keep the shadcn defaults. See
+[`TOKENS.md`](./TOKENS.md) for the full reference and versioning policy.
+
+- **Prebuilt CSS:** copy [`brand.template.css`](./brand.template.css), edit it,
+  and load it **after** the theme bundle.
+- **Sass:** override `scss/_tokens-brand.scss`, or re-declare tokens after
+  importing the theme.
+
+## Build (local development)
 
 ```bash
 npm install          # first time only
-npm run build        # -> dist/css/bootstrap-shadcn.css (+ .min.css), dist/js/bootstrap.bundle.min.js
-npm run watch        # recompile on change during development
+npm run build        # -> dist/css/bootstrap-shadcn.css (+ .min.css), dist/js/bootcn.js (+ .esm/.min), fonts
+npm run watch        # recompile CSS on change during development
 ```
 
-## Use in a PHP/HTML page
+## Use in a PHP/HTML page (local `dist/`)
 
 ```html
 <link rel="stylesheet" href="/dist/css/bootstrap-shadcn.min.css">

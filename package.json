@@ -1,19 +1,84 @@
 {
   "name": "bootstrap-shadcn-theme",
   "version": "0.1.0",
-  "description": "A shadcn/ui theme for Bootstrap 5, compiled from vendored Bootstrap Sass source.",
-  "private": true,
+  "description": "A shadcn/ui theme for Bootstrap 5, compiled from vendored Bootstrap Sass source, plus bootcn (net-new vanilla-JS components). Token-driven and reusable across projects.",
   "license": "MIT",
+  "author": "vicalop",
+  "homepage": "https://github.com/vicalop/framework-bootstrapcn#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicalop/framework-bootstrapcn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vicalop/framework-bootstrapcn/issues"
+  },
+  "keywords": [
+    "bootstrap",
+    "shadcn",
+    "theme",
+    "design-tokens",
+    "css",
+    "sass",
+    "ui",
+    "components"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "dist/css/*.css",
+    "dist/js/bootcn.js",
+    "dist/js/bootcn.min.js",
+    "js/src/index.js"
+  ],
+  "style": "dist/css/bootstrap-shadcn.min.css",
+  "sass": "scss/theme.scss",
+  "main": "dist/js/bootcn.js",
+  "module": "dist/js/bootcn.esm.js",
+  "unpkg": "dist/js/bootcn.min.js",
+  "jsdelivr": "dist/js/bootcn.min.js",
+  "exports": {
+    ".": {
+      "import": "./dist/js/bootcn.esm.js",
+      "default": "./dist/js/bootcn.js"
+    },
+    "./css": "./dist/css/bootstrap-shadcn.css",
+    "./css/min": "./dist/css/bootstrap-shadcn.min.css",
+    "./js": "./dist/js/bootcn.js",
+    "./js/esm": "./dist/js/bootcn.esm.js",
+    "./js/min": "./dist/js/bootcn.min.js",
+    "./scss": "./scss/theme.scss",
+    "./scss/*": "./scss/*",
+    "./tokens.json": "./tokens.json",
+    "./brand.template.css": "./brand.template.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "scss",
+    "vendor/bootstrap/scss",
+    "assets/fonts",
+    "brand.template.css",
+    "tokens.json",
+    "TOKENS.md",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "vendor:refresh": "shx rm -rf vendor/bootstrap/scss && shx mkdir -p vendor/bootstrap && shx cp -r node_modules/bootstrap/scss vendor/bootstrap/scss",
     "copy:js": "shx mkdir -p dist/js && shx cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js dist/js/bootstrap.bundle.min.js",
     "copy:fonts": "shx mkdir -p dist/fonts && shx cp assets/fonts/InterVariable.woff2 dist/fonts/InterVariable.woff2",
+    "copy:brand": "shx mkdir -p dist/css && shx cp brand.template.css dist/css/brand.template.css",
     "build:css": "sass scss/theme.scss dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps",
     "build:min": "sass scss/theme.scss dist/css/bootstrap-shadcn.min.css --style=compressed --no-source-map --quiet-deps",
     "prefix": "postcss dist/css/bootstrap-shadcn.css dist/css/bootstrap-shadcn.min.css --replace --use autoprefixer",
     "build:js": "esbuild js/src/index.js --bundle --format=iife --outfile=dist/js/bootcn.js && esbuild js/src/index.js --bundle --format=iife --minify --outfile=dist/js/bootcn.min.js",
-    "build": "npm run build:css && npm run build:min && npm run prefix && npm run build:js && npm run copy:js && npm run copy:fonts",
-    "watch": "sass --watch scss/theme.scss:dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps"
+    "build:esm": "esbuild js/src/index.js --bundle --format=esm --outfile=dist/js/bootcn.esm.js",
+    "build": "npm run build:css && npm run build:min && npm run prefix && npm run build:js && npm run build:esm && npm run copy:js && npm run copy:fonts && npm run copy:brand",
+    "watch": "sass --watch scss/theme.scss:dist/css/bootstrap-shadcn.css --style=expanded --no-source-map --quiet-deps",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "browserslist": [
     "defaults",
@@ -28,5 +93,16 @@
     "postcss-cli": "^11.0.0",
     "sass": "^1.77.0",
     "shx": "^0.3.4"
+  },
+  "peerDependencies": {
+    "bootstrap": "^5.3.0"
+  },
+  "peerDependenciesMeta": {
+    "bootstrap": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

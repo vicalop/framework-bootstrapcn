@@ -13,6 +13,8 @@
 // 4. shadcn runtime token layers
 @import "tokens-light";
 @import "tokens-dark";
+// Optional per-project brand overrides (empty by default; wins over the above)
+@import "tokens-brand";
 
 // 5. Bootstrap variable remap → shadcn tokens
 @import "bs-variable-map";
