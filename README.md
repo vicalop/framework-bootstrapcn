@@ -24,7 +24,8 @@ build tooling in their project.
 ## Quick start
 
 No build step required. Add three tags to your page — theme CSS, Bootstrap's JS
-bundle, then `bootcn` — served straight from a CDN and pinned to a version:
+bundle, then `bootcn` — served straight from jsDelivr with `@latest` so every
+project picks up new releases automatically:
 
 ```html
 <!doctype html>
@@ -35,7 +36,7 @@ bundle, then `bootcn` — served straight from a CDN and pinned to a version:
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/css/bootstrap-shadcn.min.css"
+      href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@latest/dist/css/bootstrap-shadcn.min.css"
     />
   </head>
   <body>
@@ -50,8 +51,8 @@ bundle, then `bootcn` — served straight from a CDN and pinned to a version:
       </select>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/js/bootcn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@latest/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@latest/dist/js/bootcn.min.js"></script>
   </body>
 </html>
 ```
@@ -71,8 +72,10 @@ html.dataset.bsTheme = html.dataset.bsTheme === "dark" ? "light" : "dark";
 reuses Bootstrap's JavaScript for positioning and dismissal, so Bootstrap's
 bundle must load first.
 
-> Bump `@v0.1.0` to a newer tag to upgrade a project. Each version is immutable,
-> so pinning keeps things stable. See [all releases](https://github.com/vicalop/framework-bootstrapcn/releases).
+> `@latest` resolves to the newest release tag. jsDelivr may cache it for up to
+> ~12 hours at the edge, so a new tag can take a little while to propagate. Pin
+> `@vX.Y.Z` instead if you need immutable caching or strict version control.
+> `@main` does **not** work — `dist/` is only attached to release tags.
 
 ---
 
@@ -145,7 +148,7 @@ The simplest way (no build): copy [`brand.template.css`](./brand.template.css),
 edit the values, and load it **after** the theme:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/css/bootstrap-shadcn.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@latest/dist/css/bootstrap-shadcn.min.css" />
 <link rel="stylesheet" href="/css/brand.css" /> <!-- your edited copy -->
 ```
 
@@ -230,7 +233,8 @@ git push origin v0.1.1
 ```
 
 The Action builds, attaches `dist/` to the tag, and prints the ready-to-use
-jsDelivr URLs in its run summary. Tags are **immutable** — never move or recreate
+jsDelivr URLs in its run summary. Projects on `@latest` pick up the new release
+once jsDelivr's cache refreshes. Tags are **immutable** — never move or recreate
 a published tag; bump to a new version instead. Full contributor guidance lives
 in [`AGENTS.md`](./AGENTS.md).
 

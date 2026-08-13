@@ -70,7 +70,17 @@ jobs:
           {
             echo "### Published ${GITHUB_REF_NAME} to jsDelivr"
             echo ""
-            echo "Use these version-pinned URLs in your projects:"
+            echo "Projects on \`@latest\` will pick this up once jsDelivr's cache refreshes (~12h max)."
+            echo ""
+            echo "**CDN (auto-updating):**"
+            echo ""
+            echo '```html'
+            echo "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/${REPO}@latest/dist/css/bootstrap-shadcn.min.css\">"
+            echo "<script src=\"https://cdn.jsdelivr.net/gh/${REPO}@latest/dist/js/bootstrap.bundle.min.js\"></script>"
+            echo "<script src=\"https://cdn.jsdelivr.net/gh/${REPO}@latest/dist/js/bootcn.min.js\"></script>"
+            echo '```'
+            echo ""
+            echo "**Pinned (this release):**"
             echo ""
             echo '```html'
             echo "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/${REPO}@${GITHUB_REF_NAME}/dist/css/bootstrap-shadcn.min.css\">"

@@ -107,13 +107,15 @@ To cut a release (only when explicitly requested):
 
 ## Consuming in projects
 
-Pure HTML/PHP (no build tooling), version-pinned:
+Pure HTML/PHP (no build tooling), `@latest` (auto-updates on each release):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@vX.Y.Z/dist/css/bootstrap-shadcn.min.css">
-<script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@vX.Y.Z/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@vX.Y.Z/dist/js/bootcn.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@latest/dist/css/bootstrap-shadcn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@latest/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@latest/dist/js/bootcn.min.js"></script>
 ```
+
+Pin `@vX.Y.Z` instead when you need a fixed version or immutable CDN caching.
 
 Load order is always: theme CSS → Bootstrap JS bundle → `bootcn` JS. Dark mode is
 `data-bs-theme="dark"`. See `README.md` for npm/Sass consumption and `TOKENS.md`
