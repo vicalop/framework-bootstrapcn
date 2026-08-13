@@ -1,18 +1,177 @@
-# bootstrap-shadcn-theme
+# Bootstrap shadcn Theme
 
-A shadcn/ui theme for Bootstrap 5.3, compiled from vendored Bootstrap Sass
-source — plus `bootcn`, a set of net-new vanilla-JS components. It's
-**token-driven**: the shadcn [design tokens](./TOKENS.md) are the reusable
-contract, consumed by both the Bootstrap adapter and every `bootcn` component,
-so the whole system rebrands and themes (light/dark) from a handful of
-variables. Built to be published once and reused across projects.
+Give [Bootstrap 5.3](https://getbootstrap.com/) the clean, modern look of
+[shadcn/ui](https://ui.shadcn.com/) — without adopting React or Tailwind. Drop in
+one stylesheet and your existing Bootstrap markup renders with shadcn's neutral
+palette, soft radii, subtle borders and focus rings, the Inter font, and
+first-class light/dark mode.
 
-## Install & reuse across projects
+It also ships **`bootcn`**: a small, dependency-light set of vanilla-JS
+components (toasts, command palette, combobox, data table, and more) that shadcn
+has but Bootstrap doesn't — all themed from the same design tokens.
 
-Pick whichever consumption path fits a project; all of them resolve to the same
-token-driven CSS + JS. Always **pin a version** so projects upgrade on purpose.
+**Who it's for:** anyone building server-rendered (PHP/HTML), Rails, Django,
+Laravel, or plain-HTML apps on Bootstrap who wants the shadcn aesthetic with zero
+build tooling in their project.
 
-**npm (bundler or Sass toolchain):**
+> **Note — this is an agentic-led project.** The design, code, and this
+> documentation are developed primarily by AI coding agents working from a human's
+> direction. If something looks unusually thorough (or unusually opinionated),
+> that's why. Contributions and issues are welcome all the same.
+
+---
+
+## Quick start
+
+No build step required. Add three tags to your page — theme CSS, Bootstrap's JS
+bundle, then `bootcn` — served straight from a CDN and pinned to a version:
+
+```html
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/css/bootstrap-shadcn.min.css"
+    />
+  </head>
+  <body>
+    <div class="container py-5">
+      <button class="btn btn-primary">Primary</button>
+
+      <!-- A bootcn component: just markup, auto-initialized -->
+      <select class="form-select mt-3" data-bootcn-combobox data-placeholder="Select a framework…">
+        <option value="next">Next.js</option>
+        <option value="svelte">SvelteKit</option>
+        <option value="astro">Astro</option>
+      </select>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/js/bootcn.min.js"></script>
+  </body>
+</html>
+```
+
+That's it. Your Bootstrap components are now shadcn-styled, and `bootcn`
+components initialize automatically from their `data-bootcn-*` attributes.
+
+**Dark mode:** set `data-bs-theme="dark"` on `<html>` (or any container). Toggle
+it in JS:
+
+```js
+const html = document.documentElement;
+html.dataset.bsTheme = html.dataset.bsTheme === "dark" ? "light" : "dark";
+```
+
+**Load order matters:** theme CSS → Bootstrap JS bundle → `bootcn` JS. `bootcn`
+reuses Bootstrap's JavaScript for positioning and dismissal, so Bootstrap's
+bundle must load first.
+
+> Bump `@v0.1.0` to a newer tag to upgrade a project. Each version is immutable,
+> so pinning keeps things stable. See [all releases](https://github.com/vicalop/framework-bootstrapcn/releases).
+
+---
+
+## Components (`bootcn`)
+
+Every component reads from the runtime design tokens, so they all theme in light
+and dark automatically. Most auto-initialize from `data-bootcn-*` markup; a few
+have an imperative API on the global `bootcn` object.
+
+**Toasts** (Sonner-style):
+
+```js
+bootcn.toast("Link copied");
+bootcn.toast.success("Changes saved", { description: "You're all set." });
+bootcn.toast.error("Could not save", { action: { label: "Retry", onClick() {} } });
+```
+
+**Avatar** — image with an automatic initials fallback:
+
+```html
+<span class="bootcn-avatar"><img src="…" alt="Sofia"><span>SC</span></span>
+```
+
+**Combobox** — progressively enhances a native `<select>` (works without JS, and
+writes back + fires `change`, so forms just work):
+
+```html
+<select class="form-select" data-bootcn-combobox data-placeholder="Select framework…">
+  <option value="next">Next.js</option> …
+</select>
+```
+
+**Command palette** — opens on ⌘K / Ctrl+K (or `bootcn.command.open()`):
+
+```html
+<div data-bootcn-command hidden>
+  <div data-bootcn-command-group="Navigation">
+    <button data-bootcn-command-item data-href="/dashboard" data-shortcut="G D">Dashboard</button>
+  </div>
+</div>
+```
+
+Items with `data-href` navigate; otherwise set `bootcn.command.onSelect = item => {…}`.
+
+**And more** — see the kitchen-sink `demo/index.php` for live markup:
+
+| Component | Markup / API |
+|---|---|
+| Input OTP | `<input data-bootcn-otp data-length="6">` (keeps full value in the input) |
+| Calendar | `<div data-bootcn-calendar data-selected="2026-07-15">` |
+| Date Picker | `<input data-bootcn-datepicker>` → button + popover calendar |
+| Context Menu | `<div data-bootcn-context-menu>` with a `-trigger` and hidden `-content` |
+| Hover Card | `data-bootcn-hovercard` + a `-trigger`; content in a `<template data-bootcn-hovercard-content>` |
+| Scroll Area | `class="bootcn-scroll-area"` (CSS-only, thin token scrollbars) |
+| Resizable | `<div data-bootcn-resizable>` with `[data-bootcn-panel]` children (`data-direction="vertical"` for rows) |
+| Menubar | `<div data-bootcn-menubar>` of Bootstrap dropdowns; hover-switch + arrow nav |
+| Navigation Menu | `<nav data-bootcn-navmenu>` with `.bootcn-navmenu-item` (trigger + content panel) |
+| Data Table | `<table data-bootcn-datatable data-page-size="10">`, `<th data-sortable>` — adds filter, sort, pagination |
+| Sidebar | `<aside data-bootcn-sidebar>` + a `[data-bootcn-sidebar-toggle]` button — collapsible rail, persisted; mobile overlay |
+
+---
+
+## Theming & branding
+
+Colors are driven by [shadcn design tokens](./TOKENS.md) — CSS custom properties
+like `--primary`, `--background`, and `--radius`. Override only the ones you want;
+the rest keep the shadcn defaults.
+
+The simplest way (no build): copy [`brand.template.css`](./brand.template.css),
+edit the values, and load it **after** the theme:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/css/bootstrap-shadcn.min.css" />
+<link rel="stylesheet" href="/css/brand.css" /> <!-- your edited copy -->
+```
+
+```css
+/* /css/brand.css — values are shadcn HSL channels: "H S% L%" */
+:root {
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --radius: 0.5rem;
+}
+[data-bs-theme="dark"] {
+  --primary: 217.2 91.2% 59.8%;
+}
+```
+
+See [`TOKENS.md`](./TOKENS.md) for the full token reference and versioning policy.
+
+---
+
+## Other ways to install
+
+The CDN quick start above is the easiest path. If you use a bundler or Sass
+toolchain, you can consume it as a package instead.
+
+**npm** (needs a one-time `npm publish`; also enables the `cdn.jsdelivr.net/npm/…`
+URLs):
 
 ```bash
 npm install @vicalop/bootstrap-shadcn-theme bootstrap
@@ -21,160 +180,63 @@ npm install @vicalop/bootstrap-shadcn-theme bootstrap
 ```js
 import "@vicalop/bootstrap-shadcn-theme/css/min"; // compiled theme
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "@vicalop/bootstrap-shadcn-theme";         // bootcn (auto-inits data-bootcn-*)
+import "@vicalop/bootstrap-shadcn-theme";         // bootcn (auto-inits)
 ```
+
+**Sass** — compile the theme yourself and override tokens:
 
 ```scss
-@use "@vicalop/bootstrap-shadcn-theme/scss" as *; // scss/theme.scss (compile yourself)
+@use "@vicalop/bootstrap-shadcn-theme/scss" as *;
+:root { --primary: 221.2 83.2% 53.3%; }
 ```
 
-**git tag (no registry needed — builds on install via the `prepare` hook):**
+**Directly from GitHub** (no registry; builds on install):
 
 ```bash
 npm install github:vicalop/framework-bootstrapcn#v0.1.0
 ```
 
-**CDN / plain HTML (served from the published package, version-pinned):**
+---
 
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vicalop/bootstrap-shadcn-theme@0.1.0/dist/css/bootstrap-shadcn.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@vicalop/bootstrap-shadcn-theme@0.1.0/dist/js/bootcn.min.js"></script>
-```
-
-The published package ships prebuilt `dist/` plus the `scss/` sources,
-`tokens.json`, and `brand.template.css`. Build artifacts are produced
-automatically on `npm publish`/`npm pack` and on git installs (`prepare` hook),
-so they are intentionally not committed to the repo.
-
-### Per-project branding
-
-Override only the tokens you need; unset tokens keep the shadcn defaults. See
-[`TOKENS.md`](./TOKENS.md) for the full reference and versioning policy.
-
-- **Prebuilt CSS:** copy [`brand.template.css`](./brand.template.css), edit it,
-  and load it **after** the theme bundle.
-- **Sass:** override `scss/_tokens-brand.scss`, or re-declare tokens after
-  importing the theme.
-
-## Build (local development)
+## Local development
 
 ```bash
 npm install          # first time only
-npm run build        # -> dist/css/bootstrap-shadcn.css (+ .min.css), dist/js/bootcn.js (+ .esm/.min), fonts
-npm run watch        # recompile CSS on change during development
+npm run build        # -> dist/ (CSS expanded + min, bootcn JS iife/esm/min, fonts)
+npm run watch        # recompile CSS on change
 ```
 
-## Use in a PHP/HTML page (local `dist/`)
+Open `demo/index.php` (any PHP server, e.g. `php -S localhost:8000`) for a
+kitchen-sink of every component in light and dark. The built `dist/` folder is
+gitignored — it's generated on demand and attached to release tags (see below).
 
-```html
-<link rel="stylesheet" href="/dist/css/bootstrap-shadcn.min.css">
-<script src="/dist/js/bootstrap.bundle.min.js"></script>
-```
+To bump the vendored Bootstrap version: change `bootstrap` in `package.json`,
+then `npm install && npm run vendor:refresh && npm run build`.
 
-Toggle dark mode by setting `data-bs-theme="dark"` on `<html>` (or any container).
+---
 
-## Serve to projects via jsDelivr (GitHub route — no npm publish, no self-hosting)
+## Releasing new versions
 
-Best fit for pure-PHP projects that just want `<link>`/`<script>` tags with a
-version in the URL. jsDelivr serves any **public** GitHub repo by tag with
-correct MIME types and caching:
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/css/bootstrap-shadcn.min.css">
-<script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@v0.1.0/dist/js/bootcn.min.js"></script>
-```
-
-To update a project, bump `@v0.1.0` to the newer tag. Each tag is immutable, so
-old projects keep working.
-
-### Cutting a release
-
-jsDelivr serves files **as committed at the tag** and does not run the build,
-and `dist/` is gitignored on `main`. The
-[`Release to jsDelivr`](.github/workflows/release.yml) GitHub Action bridges
-that: on a version tag it builds `dist/` and attaches it to the tag (the build
-commit is reachable only via the tag, so `main` stays clean).
+Distribution uses jsDelivr's GitHub route, served from version tags. Because
+jsDelivr serves files as committed (and `dist/` is gitignored on `main`), a
+GitHub Action ([`.github/workflows/release.yml`](.github/workflows/release.yml))
+builds `dist/` and attaches it to the tag on release.
 
 ```bash
-# 1. bump the version in package.json on main, commit, push
+# 1. bump "version" in package.json on main, commit, push
 # 2. tag it (must match package.json) and push the tag:
 git tag v0.1.1
 git push origin v0.1.1
 ```
 
-The Action then builds and re-points `v0.1.1` at a commit containing `dist/`,
-and prints the ready-to-use jsDelivr URLs in its run summary. Requires the repo
-to be **public** and Actions to have write permission (`contents: write`, set in
-the workflow).
+The Action builds, attaches `dist/` to the tag, and prints the ready-to-use
+jsDelivr URLs in its run summary. Tags are **immutable** — never move or recreate
+a published tag; bump to a new version instead. Full contributor guidance lives
+in [`AGENTS.md`](./AGENTS.md).
 
-## `bootcn` — JavaScript components (phase 2)
+---
 
-Net-new shadcn components that Bootstrap doesn't ship. Load `bootcn.js` **after**
-Bootstrap's bundle; it auto-inits `data-bootcn-*` markup and exposes a `bootcn`
-global.
-
-```html
-<script src="/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/dist/js/bootcn.min.js"></script>
-```
-
-**Toasts** (Sonner-style) — imperative:
-```js
-bootcn.toast("Link copied");
-bootcn.toast.success("Changes saved", { description: "You're all set." });
-bootcn.toast.error("Could not save", { action: { label: "Retry", onClick() {} } });
-```
-
-**Avatar** — CSS + initials fallback when the image is missing/broken:
-```html
-<span class="bootcn-avatar"><img src="…" alt="Sofia"><span>SC</span></span>
-```
-
-**Combobox** — progressively enhances a native `<select>` (falls back to it with
-JS off; writes back and fires `change`, so forms just work):
-```html
-<select class="form-select" data-bootcn-combobox data-placeholder="Select framework…">
-  <option value="next">Next.js</option> …
-</select>
-```
-
-**Command palette** — opens on ⌘K / Ctrl+K (or `bootcn.command.open()`):
-```html
-<div data-bootcn-command hidden>
-  <div data-bootcn-command-group="Navigation">
-    <button data-bootcn-command-item data-href="/dashboard" data-shortcut="G D">Dashboard</button>
-  </div>
-</div>
-```
-Items with `data-href` navigate; otherwise set `bootcn.command.onSelect = item => {…}`.
-
-**More components** (all auto-init from `data-bootcn-*`; see the kitchen-sink
-`demo/index.php` for live markup):
-
-| Component | Markup / API |
-|---|---|
-| Input OTP | `<input data-bootcn-otp data-length="6">` (keeps full value in the input) |
-| Calendar | `<div data-bootcn-calendar data-selected="2026-07-15">` |
-| Date Picker | `<input data-bootcn-datepicker>` → button + popover calendar |
-| Context Menu | `<div data-bootcn-context-menu>` with a `-trigger` and hidden `-content` |
-| Hover Card | `data-bootcn-hovercard` + a `-trigger`; put content in a `<template data-bootcn-hovercard-content>` |
-| Scroll Area | `class="bootcn-scroll-area"` (CSS-only, thin token scrollbars) |
-| Resizable | `<div data-bootcn-resizable>` with `[data-bootcn-panel]` children (`data-direction="vertical"` for rows) |
-| Menubar | `<div data-bootcn-menubar>` of Bootstrap dropdowns; hover-switch + arrow nav |
-| Navigation Menu | `<nav data-bootcn-navmenu>` with `.bootcn-navmenu-item` (trigger + content panel) |
-| Data Table | `<table data-bootcn-datatable data-page-size="10">`, `<th data-sortable>` (`data-sort="number"`) — adds filter, sort, pagination |
-| Sidebar | `<aside data-bootcn-sidebar>` + a `[data-bootcn-sidebar-toggle]` button — collapsible rail, persisted; mobile overlay |
-
-Every component reads from the runtime tokens, so all of them theme in light and
-dark automatically.
-
-## Updating Bootstrap
-
-Bump `bootstrap` in `package.json`, then `npm install && npm run vendor:refresh && npm run build`.
-
-## Known limitations (Phase 1: theme only)
+## Known limitations
 
 The theme drives colors through shadcn design tokens (HSL *channels*, e.g.
 `--primary: 240 5.9% 10%`), consumed as `hsl(var(--token))`. Bootstrap 5.3,
@@ -196,13 +258,25 @@ retargeted** and will render stock Bootstrap colors if used, including:
   `--secondary` is a light **surface** color, not a text color, so mapping text
   onto it would be unreadable. Use `.text-body-secondary` for muted text.
 
-These are additive to retarget later and follow the same one-line override
-pattern in `scss/_shadcn-overrides.scss`.
+These follow the same one-line override pattern in `scss/_shadcn-overrides.scss`
+and can be retargeted as needed.
 
-## One intentional static color
+**One intentional static color:** the dark-mode checkbox/switch/radio
+checked-glyph is baked into an SVG data URI (`#18181b`) because a data URI can't
+interpolate a CSS variable. This mirrors Bootstrap's own approach (it bakes
+`#fff` into the same icon).
 
-Every color in the theme is token-driven except one documented exception: the
-dark-mode checkbox/switch/radio **checked-glyph** color is baked into an SVG data
-URI (`#18181b`), because a data URI cannot interpolate a CSS variable. This
-mirrors Bootstrap's own approach (it bakes `#fff` into the same icon) and is
-commented as such in `scss/_shadcn-overrides.scss`.
+---
+
+## About this project
+
+This is an **agentic-led effort**: an experiment in having AI coding agents build
+and maintain a real, reusable design-system package end to end — from the Sass
+token architecture and the `bootcn` components to the packaging, CI release
+pipeline, and these docs. A human sets direction and reviews; the agents do the
+implementation. See [`AGENTS.md`](./AGENTS.md) for how that workflow is
+structured.
+
+## License
+
+[MIT](./LICENSE).
