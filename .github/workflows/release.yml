@@ -64,13 +64,64 @@ jobs:
           git tag -f -a "${GITHUB_REF_NAME}" -m "Release ${GITHUB_REF_NAME}"
           git push -f origin "${GITHUB_REF_NAME}"
 
+      - name: Purge jsDelivr @latest cache
+        env:
+          REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          VERSION="${TAG#v}"
+          FILES=(
+            dist/css/bootstrap-shadcn.min.css
+            dist/js/bootstrap.bundle.min.js
+            dist/js/bootcn.min.js
+          )
+
+          purge_latest() {
+            local ok=1
+            for file in "${FILES[@]}"; do
+              echo "Purging gh/${REPO}@latest/${file}"
+              resp=$(curl -fsS "https://purge.jsdelivr.net/gh/${REPO}@latest/${file}")
+              echo "$resp"
+              if ! echo "$resp" | grep -q '"status":"finished"'; then
+                ok=0
+              fi
+            done
+            [ "$ok" -eq 1 ]
+          }
+
+          verify_latest() {
+            headers=$(curl -fsSI "https://cdn.jsdelivr.net/gh/${REPO}@latest/dist/css/bootstrap-shadcn.min.css")
+            ver=$(printf '%s\n' "$headers" | tr -d '\r' | awk -F': ' 'tolower($1)=="x-jsd-version" {print $2; exit}')
+            echo "CDN x-jsd-version: ${ver:-unknown} (expect ${VERSION})"
+            [ "${ver}" = "${VERSION}" ]
+          }
+
+          # jsDelivr may briefly cache the release index; pause before the first purge.
+          echo "Waiting 30s for jsDelivr to index ${TAG}..."
+          sleep 30
+
+          for attempt in 1 2 3; do
+            echo "Purge attempt ${attempt}/3"
+            purge_latest || true
+            sleep 10
+            if verify_latest; then
+              echo "Purge verified — @latest serves ${TAG}"
+              exit 0
+            fi
+            echo "Verification failed; retrying in 60s..."
+            sleep 60
+          done
+
+          echo "::warning::Could not verify @latest purge. CDN may take up to ~12h to refresh."
+
       - name: Publish summary
         run: |
           REPO="${{ github.repository }}"
           {
             echo "### Published ${GITHUB_REF_NAME} to jsDelivr"
             echo ""
-            echo "Projects on \`@latest\` will pick this up once jsDelivr's cache refreshes (~12h max)."
+            echo "The release workflow purged \`@latest\` via \`purge.jsdelivr.net\` so projects update immediately (browser caches may still lag up to ~7 days)."
             echo ""
             echo "**CDN (auto-updating):**"
             echo ""

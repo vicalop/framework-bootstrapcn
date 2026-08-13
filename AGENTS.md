@@ -84,13 +84,16 @@ To cut a release (only when explicitly requested):
    git push origin vX.Y.Z
    ```
 
-4. The Action builds, attaches `dist/`, re-points the tag, and prints the
-   jsDelivr URLs in its run summary. Verify success:
+4. The Action builds, attaches `dist/`, re-points the tag, purges jsDelivr's
+   `@latest` cache (`https://purge.jsdelivr.net/gh/<owner>/<repo>@latest/...`),
+   and prints the jsDelivr URLs in its run summary. Verify success:
 
    ```bash
    gh run list --workflow release.yml --limit 1
-   # then check an asset resolves:
+   # pinned tag resolves:
    curl -sI "https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@vX.Y.Z/dist/css/bootstrap-shadcn.min.css"
+   # @latest points at the new release (after purge):
+   curl -sI "https://cdn.jsdelivr.net/gh/vicalop/framework-bootstrapcn@latest/dist/css/bootstrap-shadcn.min.css" | grep -i x-jsd-version
    ```
 
 ### Release rules (important)
