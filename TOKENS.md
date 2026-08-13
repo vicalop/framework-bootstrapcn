@@ -64,7 +64,7 @@ Override `scss/_tokens-brand.scss` (imported last among the token layers), or
 re-declare tokens after importing the theme:
 
 ```scss
-@import "bootstrap-shadcn-theme/scss"; // scss/theme.scss
+@import "@vicalop/bootstrap-shadcn-theme/scss"; // scss/theme.scss
 :root { --primary: 221.2 83.2% 53.3%; }
 [data-bs-theme="dark"] { --primary: 217.2 91.2% 59.8%; }
 ```

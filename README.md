@@ -15,17 +15,17 @@ token-driven CSS + JS. Always **pin a version** so projects upgrade on purpose.
 **npm (bundler or Sass toolchain):**
 
 ```bash
-npm install bootstrap-shadcn-theme bootstrap
+npm install @vicalop/bootstrap-shadcn-theme bootstrap
 ```
 
 ```js
-import "bootstrap-shadcn-theme/css/min"; // compiled theme
+import "@vicalop/bootstrap-shadcn-theme/css/min"; // compiled theme
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "bootstrap-shadcn-theme";         // bootcn (auto-inits data-bootcn-*)
+import "@vicalop/bootstrap-shadcn-theme";         // bootcn (auto-inits data-bootcn-*)
 ```
 
 ```scss
-@use "bootstrap-shadcn-theme/scss" as *; // scss/theme.scss (compile yourself)
+@use "@vicalop/bootstrap-shadcn-theme/scss" as *; // scss/theme.scss (compile yourself)
 ```
 
 **git tag (no registry needed — builds on install via the `prepare` hook):**
@@ -37,9 +37,9 @@ npm install github:vicalop/framework-bootstrapcn#v0.1.0
 **CDN / plain HTML (served from the published package, version-pinned):**
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-shadcn-theme@0.1.0/dist/css/bootstrap-shadcn.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vicalop/bootstrap-shadcn-theme@0.1.0/dist/css/bootstrap-shadcn.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-shadcn-theme@0.1.0/dist/js/bootcn.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vicalop/bootstrap-shadcn-theme@0.1.0/dist/js/bootcn.min.js"></script>
 ```
 
 The published package ships prebuilt `dist/` plus the `scss/` sources,
