@@ -54,7 +54,15 @@ The [`.github/workflows/release.yml`](.github/workflows/release.yml) Action
 not run builds, and `dist/` is gitignored on `main`, so the Action bridges that).
 The build commit is reachable only via the tag, keeping `main` history clean.
 
-To cut a release:
+**A normal commit/push does NOT publish to the CDN.** Only pushing a `v*` tag
+does. Pushing source or docs changes to a branch or to `main` updates GitHub
+only — jsDelivr keeps serving existing tags unchanged. Do not create a release
+tag unless the human explicitly asks for one. Docs-only or source-only changes
+should ride along in `main` without a version bump; a new CDN version is
+warranted only when the built `dist/` actually changes (README/docs never ship
+in the CDN assets — only `dist/` does).
+
+To cut a release (only when explicitly requested):
 
 1. Make and commit your source changes on a branch; get them merged to `main`.
 2. On `main`, bump `version` in `package.json` (and the token schema version in
@@ -77,6 +85,8 @@ To cut a release:
 
 ### Release rules (important)
 
+- **Only a `v*` tag publishes.** Branch/`main` pushes never version the CDN; a
+  README-only or docs-only change never needs (and should not get) a release.
 - **Tags are immutable.** Never move, delete, or recreate a tag that has already
   been published/consumed — jsDelivr caches by tag. To fix or change a release,
   bump to a new version and tag that instead.
