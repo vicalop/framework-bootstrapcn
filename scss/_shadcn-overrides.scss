@@ -281,8 +281,38 @@ a:hover {
 
 // --- Tables ---
 .table {
+  // Bootstrap defaults --bs-table-bg to --bs-body-bg, which the variable map
+  // retargets at hsl(var(--background)). That paints every cell the PAGE color,
+  // so a table inside a .card (which is hsl(var(--card))) renders as a slab of
+  // the wrong surface -- barely visible in light, a dark hole in dark.
+  //
+  // transparent rather than hsl(var(--card)): a table is not itself a surface,
+  // it sits on one. Staying transparent means it composes correctly on a card,
+  // on the page, or inside any surface added later, with no rule per container.
+  // The striped/hover/active states are unaffected: they set
+  // --bs-table-bg-type / --bs-table-bg-state, which the cell rule consumes
+  // through its box-shadow layer, not through --bs-table-bg.
+  //
+  // The contextual .table-primary/.table-success/... variants DO set
+  // --bs-table-bg. On a <tr> or <td> -- how they are normally used -- they still
+  // win, as a declaration on a descendant. Only `class="table table-primary"` on
+  // the table element itself loses its tint here, since this block is emitted
+  // after Bootstrap at equal specificity. That is the same trade-off
+  // --bs-table-color below already makes, so the two stay consistent.
+  --bs-table-bg: transparent;
   --bs-table-color: hsl(var(--foreground));
   --bs-table-border-color: hsl(var(--border));
   --bs-table-striped-color: hsl(var(--foreground));
   --bs-table-hover-color: hsl(var(--foreground));
+}
+
+// --- List groups ---
+// Same defect as tables, and easier to miss because nothing in demo/ uses a
+// list group. --bs-list-group-bg also defaults to --bs-body-bg, so a
+// .list-group-flush inside a card reads as see-through. Only the background
+// needs correcting here: --bs-list-group-color and --bs-list-group-border-color
+// already inherit from --bs-body-color / --bs-border-color, both of which the
+// variable map has pointed at tokens.
+.list-group {
+  --bs-list-group-bg: transparent;
 }
