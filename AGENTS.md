@@ -16,6 +16,78 @@ contract, consumed by both the Bootstrap adapter and every `bootcn` component.
   `tokens.json` (machine-readable contract). See `TOKENS.md`.
 - Build output: `dist/` — **gitignored on `main`**, produced by `npm run build`.
 
+The consumer-facing map (shadcn name → Bootstrap / `bootcn` markup) lives in
+`README.md`. The live catalog is `demo/index.php`.
+
+## Project status
+
+Parity here means **token-colored Bootstrap 5.3 markup or a `bootcn` equivalent
+for every official shadcn/ui component** — not a React/Radix/Tailwind port.
+Do not rebuild the catalog from scratch; extend it when shadcn adds a new
+official primitive, or when the human asks for deeper fidelity.
+
+### Done
+
+- **Phase 1 — Bootstrap theme.** Vendored Bootstrap 5.3 Sass, runtime HSL
+  tokens, `--bs-*` remap, surgical overrides, Inter, light/dark via
+  `data-bs-theme`.
+- **Phase 2 — bootcn.** Vanilla-JS / CSS-only components Bootstrap does not
+  ship: toasts (Sonner-style), avatar, combobox, command, OTP, calendar, date
+  picker, context menu, hover card, resizable, menubar, navigation menu, data
+  table, sidebar/app shell, scroll area, icons.
+- **Catalog parity (on `main`, Aug 2026).** Every official shadcn/ui component
+  listed at ui.shadcn.com now has a themed Bootstrap widget or a `bootcn`
+  counterpart, plus a kitchen-sink section. Added in that pass:
+  - Token schema **1.2.0**: `--chart-1` … `--chart-5`
+  - CSS: Field, Separator, Kbd, Skeleton, Empty, Item, Toggle look, Alert Dialog
+    layout, ghost button, outline/destructive badges
+  - JS: Toggle / Toggle Group, Chart (`bar` / `line` / `area` / `donut`),
+    Select (`data-bootcn-select` = combobox without search), tooltip/popover
+    auto-init
+  - Restyles: accordion, breadcrumb, pagination, progress, spinner, slider,
+    popover/tooltip, input group, carousel, alerts
+- **Packaging.** jsDelivr GitHub-tag CDN, release Action, Lucide as the icon
+  system. Example pages: dashboard, users, settings, login, signup.
+
+### Current versions (as of the catalog-parity commit)
+
+| | Value | Notes |
+|---|---|---|
+| `package.json` `version` | `0.2.3` | Last **tagged** CDN release is also `v0.2.3`. Catalog work is on `main` only until a new tag. |
+| Token schema | `1.2.0` | `tokens.json` + `bootcn.tokensVersion` |
+
+### Left to do
+
+**Release (only when the human asks).** Catalog parity changed `dist/`. Cut a
+new package version (next is `0.2.4` or `0.3.0`) and push a matching `v*` tag
+using the workflow below. Do not retag `v0.2.3`.
+
+**Catalog maintenance.** When shadcn publishes a new official component, add a
+Bootstrap restyle or `bootcn` equivalent, a `demo/index.php` section, and a
+README row. Re-check [ui.shadcn.com/docs/components](https://ui.shadcn.com/docs/components)
+(or `https://ui.shadcn.com/llms.txt`) rather than assuming the Aug 2026 list is
+frozen.
+
+**Fidelity gaps (components exist; these are depth, not missing names):**
+
+- Chart is a token-colored SVG, not Recharts (no stacked/composed charts).
+- Slider is single-thumb `.form-range`; no dual-thumb range.
+- Select has no option groups / separators like Radix Select.
+- Direction is `dir="rtl"`, not a JS direction provider.
+- Form is `.bootcn-field` + native `<form>`, not React Hook Form.
+- Bootstrap `-rgb` utilities still use stock colors: `.alert-primary`,
+  `.alert-success`, `.list-group-item-*`. Use `.alert` / `.alert-danger` for
+  shadcn default + destructive. `.text-secondary` / `.bg-secondary` stay
+  unmapped on purpose (see README Known limitations).
+- Original design mentioned regenerating `$theme-colors` at Sass compile time;
+  theming is runtime CSS-var remap + overrides instead. Only revisit if
+  `-rgb` coverage becomes a real consumer problem.
+- Demo app pages (dashboard/users/…) do not yet use every new primitive.
+
+**Optional / out of band.** `npm publish` for the npm/jsDelivr-npm URLs (README
+notes this is still a one-time unpublished step). Pixel-level visual QA of the
+kitchen sink in light and dark. Do not invent extra docs files unless asked.
+
 ## Git workflow (repo owner's preference)
 
 - **Commit directly to `main` and push to `main`.** Do not create feature
