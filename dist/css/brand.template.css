@@ -1,0 +1,57 @@
+/*
+ * Per-project brand overrides — runtime (prebuilt-CSS) consumers.
+ *
+ * Copy this file into your project, edit the values, and load it AFTER the
+ * theme so your tokens win:
+ *
+ *   <link rel="stylesheet" href="/dist/css/bootstrap-shadcn.min.css">
+ *   <link rel="stylesheet" href="/css/brand.css">   <!-- your edited copy -->
+ *
+ * Values are shadcn HSL channels: `H S% L%`, consumed as hsl(var(--token)).
+ * Delete any line you don't want to change — unset tokens keep the shadcn
+ * defaults. Keep the dark block in sync with your light block where needed.
+ *
+ * Token schema: 1.2.0 (see TOKENS.md / tokens.json).
+ */
+
+:root {
+  /* --background: 0 0% 98%; */
+  /* --foreground: 0 0% 3.9%; */
+  /* --card: 0 0% 100%; */
+  /* --card-foreground: 0 0% 3.9%; */
+  /* --popover: 0 0% 100%; */
+  /* --popover-foreground: 0 0% 3.9%; */
+  --primary: 0 0% 3.9%;
+  --primary-foreground: 0 0% 98%;
+  /* --secondary: 0 0% 96.1%; */
+  /* --secondary-foreground: 0 0% 9%; */
+  /* --muted: 0 0% 96.1%; */
+  /* --muted-foreground: 0 0% 45.2%; */
+  /* --accent: 0 0% 96.1%; */
+  /* --accent-foreground: 0 0% 9%; */
+  /* --destructive: 357 100% 45.3%; */
+  /* --destructive-foreground: 0 0% 98%; */
+  /* --border: 0 0% 89.8%; */
+  /* --input: 0 0% 89.8%; */
+  --ring: 0 0% 63%;
+  --radius: 0.5rem;
+  /* --chart-1: 12 76% 61%; */
+  /* --chart-2: 173 58% 39%; */
+  /* --chart-3: 197 37% 24%; */
+  /* --chart-4: 43 74% 66%; */
+  /* --chart-5: 27 87% 67%; */
+}
+
+[data-bs-theme="dark"] {
+  /* --background: 0 0% 0.9%; */
+  /* --foreground: 0 0% 98%; */
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  /* --secondary: 0 0% 10.4%; */
+  /* --muted: 0 0% 10.4%; */
+  /* --accent: 0 0% 10.4%; */
+  /* --destructive: 359 100% 69.6%; */
+  /* --border: 0 0% 100% / 0.12; */
+  /* --input: 0 0% 100% / 0.15; */
+  --ring: 0 0% 45.2%;
+}
