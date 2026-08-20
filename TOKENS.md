@@ -39,6 +39,7 @@ companion variables directly; see the "Known limitations" note in the README.
 | `--input` | Form control border color |
 | `--ring` | Focus ring color |
 | `--radius` | Base corner radius (drives the Bootstrap radius scale) |
+| `--chart-1` … `--chart-5` | Series colors for Chart (and any custom visualization) |
 
 > `--secondary` is a light **surface** color, not a text color. Use
 > `.text-body-secondary` (mapped to `--muted-foreground`) for muted text.

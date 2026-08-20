@@ -1,0 +1,58 @@
+// bootcn Chart — SVG series using --chart-1 … --chart-5 tokens.
+.bootcn-chart {
+  position: relative;
+  width: 100%;
+}
+.bootcn-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.bootcn-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  margin-top: .75rem;
+  font-size: .75rem;
+  color: hsl(var(--muted-foreground));
+}
+.bootcn-chart-swatch {
+  display: inline-block;
+  width: .5rem;
+  height: .5rem;
+  margin-right: .375rem;
+  border-radius: 1px;
+  vertical-align: middle;
+}
+.bootcn-chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  color: hsl(var(--muted-foreground));
+  font-size: .875rem;
+}
+.bootcn-chart-axis {
+  fill: hsl(var(--muted-foreground));
+  font-size: 10px;
+}
+.bootcn-chart-grid {
+  stroke: hsl(var(--border));
+  stroke-width: 1;
+}
+.bootcn-chart-tooltip {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  padding: .375rem .5rem;
+  font-size: .75rem;
+  background: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: calc(var(--radius) - 4px);
+  opacity: 0;
+  transform: translate(-50%, calc(-100% - .5rem));
+  transition: opacity .1s ease;
+}
+.bootcn-chart-tooltip.is-on { opacity: 1; }

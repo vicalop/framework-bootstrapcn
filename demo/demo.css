@@ -56,6 +56,45 @@
 .list-row { display: flex; align-items: center; gap: .75rem; }
 .list-row + .list-row { margin-top: 1.25rem; }
 
+/* kitchen-sink catalog */
+.ks-layout {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+.ks-nav {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  font-size: .8125rem;
+}
+.ks-nav a {
+  display: block;
+  padding: .2rem .5rem;
+  border-radius: calc(var(--radius) - 4px);
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+}
+.ks-nav a:hover, .ks-nav a:focus { color: hsl(var(--foreground)); background: hsl(var(--accent)); }
+.ks-nav .ks-nav-group {
+  display: block;
+  margin: .75rem .5rem .25rem;
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+.ks-section { scroll-margin-top: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid hsl(var(--border)); margin-bottom: 1.5rem; }
+.ks-section:last-child { border-bottom: 0; }
+@media (max-width: 767.98px) {
+  .ks-layout { grid-template-columns: 1fr; }
+  .ks-nav { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: .25rem; }
+  .ks-nav .ks-nav-group { width: 100%; margin: .5rem 0 0; }
+}
+
 /* auth screens (no shell) */
 .auth-wrap { min-height: 100vh; display: grid; place-items: center; padding: 1.5rem; background: hsl(var(--muted) / .4); }
 .auth-card { width: 100%; max-width: 24rem; }

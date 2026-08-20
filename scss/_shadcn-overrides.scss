@@ -142,6 +142,28 @@ a:hover {
 }
 .btn-link:hover { text-decoration: underline; }
 
+// Ghost — shadcn variant="ghost" (no border, accent hover)
+.btn-ghost {
+  --bs-btn-color: hsl(var(--foreground));
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: hsl(var(--accent-foreground));
+  --bs-btn-hover-bg: hsl(var(--accent));
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: hsl(var(--accent-foreground));
+  --bs-btn-active-bg: hsl(var(--accent));
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-color: hsl(var(--muted-foreground));
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
+}
+
+// shadcn Label: medium weight
+.form-label,
+.col-form-label {
+  font-weight: 500;
+}
+
 // --- Form controls: shadcn input = 1px --input border, muted placeholder ---
 .form-control,
 .form-select {
@@ -259,6 +281,15 @@ a:hover {
   background-color: hsl(var(--secondary)) !important;
   color: hsl(var(--secondary-foreground)) !important;
 }
+.badge-outline {
+  background-color: transparent;
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
+}
+.badge-destructive {
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+}
 
 // Color utilities read --bs-*-rgb companions; retarget the common ones to tokens.
 // Note: .text-secondary/.bg-secondary are intentionally left alone — shadcn's
@@ -272,11 +303,44 @@ a:hover {
 .bg-danger    { background-color: hsl(var(--destructive)) !important; }
 .border-danger { border-color: hsl(var(--destructive)) !important; }
 
-// --- Alerts: muted surface with token border ---
+// --- Alerts: shadcn default is a card-surface callout; destructive uses danger text ---
 .alert {
-  --bs-alert-bg: hsl(var(--muted));
-  --bs-alert-color: hsl(var(--foreground));
+  --bs-alert-bg: hsl(var(--card));
+  --bs-alert-color: hsl(var(--card-foreground));
   --bs-alert-border-color: hsl(var(--border));
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: .75rem;
+  align-items: start;
+}
+.alert:not(:has(> svg, > .bootcn-icon, > .bootcn-alert-icon)) {
+  grid-template-columns: 1fr;
+}
+.alert .bootcn-alert-title,
+.alert .alert-heading {
+  font-weight: 500;
+  letter-spacing: -.01em;
+  margin: 0 0 .125rem;
+}
+.alert .bootcn-alert-desc {
+  color: hsl(var(--muted-foreground));
+  font-size: .875rem;
+  margin: 0;
+}
+.alert > svg,
+.alert > .bootcn-icon,
+.alert > .bootcn-alert-icon {
+  margin-top: .125rem;
+}
+.alert-danger,
+.bootcn-alert-destructive {
+  --bs-alert-bg: hsl(var(--card));
+  --bs-alert-color: hsl(var(--destructive));
+  --bs-alert-border-color: hsl(var(--destructive) / .4);
+}
+.alert-danger .bootcn-alert-desc,
+.bootcn-alert-destructive .bootcn-alert-desc {
+  color: hsl(var(--destructive) / .85);
 }
 
 // --- Tables ---
@@ -316,3 +380,159 @@ a:hover {
 .list-group {
   --bs-list-group-bg: transparent;
 }
+
+// --- Accordion: shadcn is a stack of border-bottom items, not cards ---
+.accordion {
+  --bs-accordion-bg: transparent;
+  --bs-accordion-border-color: hsl(var(--border));
+  --bs-accordion-btn-color: hsl(var(--foreground));
+  --bs-accordion-btn-bg: transparent;
+  --bs-accordion-active-color: hsl(var(--foreground));
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-btn-padding-x: 0;
+  --bs-accordion-btn-padding-y: 1rem;
+  --bs-accordion-body-padding-x: 0;
+  --bs-accordion-body-padding-y: 0;
+}
+.accordion-body { padding-bottom: 1rem; }
+.accordion-item {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.accordion-button {
+  font-weight: 500;
+  box-shadow: none;
+}
+.accordion-button:not(.collapsed) { box-shadow: none; }
+.accordion-button::after {
+  background-size: 1rem;
+}
+
+// --- Breadcrumb ---
+.breadcrumb {
+  --bs-breadcrumb-divider-color: hsl(var(--muted-foreground));
+  margin-bottom: 0;
+}
+.breadcrumb-item,
+.breadcrumb-item a { color: hsl(var(--muted-foreground)); }
+.breadcrumb-item.active,
+.breadcrumb-item a:hover { color: hsl(var(--foreground)); }
+
+// --- Pagination: ghost-like pills ---
+.pagination {
+  --bs-pagination-padding-x: .625rem;
+  --bs-pagination-bg: transparent;
+  --bs-pagination-border-width: 0;
+  --bs-pagination-color: hsl(var(--foreground));
+  --bs-pagination-hover-bg: hsl(var(--accent));
+  --bs-pagination-hover-color: hsl(var(--accent-foreground));
+  --bs-pagination-focus-bg: hsl(var(--accent));
+  --bs-pagination-focus-color: hsl(var(--accent-foreground));
+  --bs-pagination-focus-box-shadow: 0 0 0 3px hsl(var(--ring) / .5);
+  --bs-pagination-active-bg: hsl(var(--primary));
+  --bs-pagination-active-border-color: hsl(var(--primary));
+  --bs-pagination-active-color: hsl(var(--primary-foreground));
+  --bs-pagination-disabled-bg: transparent;
+  --bs-pagination-disabled-color: hsl(var(--muted-foreground));
+  gap: .25rem;
+}
+.page-link { border-radius: calc(var(--radius) - 2px); min-width: 2.25rem; text-align: center; }
+
+// --- Progress: thin rounded track ---
+.progress {
+  --bs-progress-bg: hsl(var(--primary) / .2);
+  --bs-progress-bar-bg: hsl(var(--primary));
+  --bs-progress-border-radius: 999px;
+  height: .5rem;
+}
+
+// --- Spinner ---
+.spinner-border {
+  --bs-spinner-width: 1rem;
+  --bs-spinner-height: 1rem;
+  --bs-spinner-border-width: 2px;
+  color: hsl(var(--primary));
+}
+.spinner-border-sm {
+  --bs-spinner-width: .875rem;
+  --bs-spinner-height: .875rem;
+}
+
+// --- Range / Slider ---
+.form-range {
+  height: 1.25rem;
+}
+.form-range:focus { box-shadow: none; }
+.form-range:focus::-webkit-slider-thumb { box-shadow: 0 0 0 3px hsl(var(--ring) / .5); }
+.form-range:focus::-moz-range-thumb { box-shadow: 0 0 0 3px hsl(var(--ring) / .5); }
+.form-range::-webkit-slider-runnable-track {
+  height: .5rem;
+  background: hsl(var(--primary) / .2);
+  border-radius: 999px;
+  border: 0;
+}
+.form-range::-moz-range-track {
+  height: .5rem;
+  background: hsl(var(--primary) / .2);
+  border-radius: 999px;
+  border: 0;
+}
+.form-range::-webkit-slider-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: -.375rem;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--primary) / .2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+.form-range::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--primary) / .2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+// --- Popover / tooltip surfaces ---
+.popover {
+  --bs-popover-bg: hsl(var(--popover));
+  --bs-popover-border-color: hsl(var(--border));
+  --bs-popover-header-bg: hsl(var(--popover));
+  --bs-popover-header-color: hsl(var(--popover-foreground));
+  --bs-popover-body-color: hsl(var(--popover-foreground));
+  --bs-popover-border-radius: calc(var(--radius) - 2px);
+}
+.tooltip {
+  --bs-tooltip-bg: hsl(var(--foreground));
+  --bs-tooltip-color: hsl(var(--background));
+  --bs-tooltip-opacity: 1;
+}
+
+// --- Input group ---
+.input-group-text {
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  border-color: hsl(var(--input));
+}
+
+// --- Carousel ---
+.carousel-control-prev-icon,
+.carousel-control-next-icon { filter: none; }
+.carousel-indicators [data-bs-target] { background-color: hsl(var(--foreground)); }
+
+// --- Placeholders: token-colored pulse (Skeleton uses these + .bootcn-skeleton) ---
+.placeholder {
+  background-color: hsl(var(--accent));
+  opacity: 1;
+}
+.placeholder-glow .placeholder { animation: bootcn-pulse 1.5s ease-in-out infinite; }
+
+@keyframes bootcn-pulse {
+  50% { opacity: .5; }
+}
+
+// --- Offcanvas / Sheet header density ---
+.offcanvas-header { border-bottom: 1px solid hsl(var(--border)); }
+.offcanvas-title { font-weight: 600; letter-spacing: -.02em; }

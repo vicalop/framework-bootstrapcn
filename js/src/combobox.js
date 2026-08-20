@@ -17,6 +17,10 @@ class Combobox {
     this.placeholder = select.dataset.placeholder || 'Select…';
     this.searchPlaceholder = select.dataset.searchPlaceholder || 'Search…';
     this.emptyText = select.dataset.empty || 'No results found.';
+    // data-bootcn-select (or data-search="false") is shadcn Select: no search field.
+    this.searchable = select.hasAttribute('data-bootcn-select')
+      ? false
+      : select.dataset.search !== 'false';
     this.active = -1;
     this._build();
   }
@@ -38,11 +42,16 @@ class Combobox {
     trigger.setAttribute('aria-expanded', 'false');
     trigger.innerHTML = `<span class="bootcn-combobox-label"></span>${CHEVRON}`;
 
+    if (!this.searchable) wrap.classList.add('is-select');
+
     const menu = document.createElement('div');
     menu.className = 'dropdown-menu bootcn-combobox-menu';
+    const search = this.searchable
+      ? `<div class="bootcn-combobox-search-wrap">${SEARCH}` +
+        `<input type="text" class="bootcn-combobox-search" placeholder="${escapeAttr(this.searchPlaceholder)}" autocomplete="off" spellcheck="false"></div>`
+      : '';
     menu.innerHTML =
-      `<div class="bootcn-combobox-search-wrap">${SEARCH}` +
-      `<input type="text" class="bootcn-combobox-search" placeholder="${escapeAttr(this.searchPlaceholder)}" autocomplete="off" spellcheck="false"></div>` +
+      search +
       `<ul class="bootcn-combobox-list" role="listbox"></ul>` +
       `<div class="bootcn-combobox-empty" hidden>${escapeHtml(this.emptyText)}</div>`;
 
@@ -63,15 +72,25 @@ class Combobox {
     this.dropdown = bs().Dropdown.getOrCreateInstance(trigger);
 
     trigger.parentNode.addEventListener('shown.bs.dropdown', () => {
-      this.searchEl.value = '';
-      this._filter('');
-      this.searchEl.focus();
+      if (this.searchEl) {
+        this.searchEl.value = '';
+        this._filter('');
+        this.searchEl.focus();
+      } else {
+        this.trigger.focus();
+      }
       const sel = this.items.findIndex((it) => it.value === this.select.value);
       this._setActive(sel >= 0 ? this._visibleIndexOf(sel) : 0);
     });
 
-    this.searchEl.addEventListener('input', () => this._filter(this.searchEl.value));
-    this.searchEl.addEventListener('keydown', (e) => this._onKey(e));
+    if (this.searchEl) {
+      this.searchEl.addEventListener('input', () => this._filter(this.searchEl.value));
+      this.searchEl.addEventListener('keydown', (e) => this._onKey(e));
+    } else {
+      trigger.addEventListener('keydown', (e) => {
+        if (this.trigger.getAttribute('aria-expanded') === 'true') this._onKey(e);
+      });
+    }
   }
 
   _renderOptions() {

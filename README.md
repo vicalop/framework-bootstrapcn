@@ -86,6 +86,10 @@ Every component reads from the runtime design tokens, so they all theme in light
 and dark automatically. Most auto-initialize from `data-bootcn-*` markup; a few
 have an imperative API on the global `bootcn` object.
 
+The kitchen-sink `demo/index.php` is a **component-for-component catalog** of
+every official [shadcn/ui](https://ui.shadcn.com/docs/components) primitive,
+mapped onto Bootstrap 5.3 (themed) or a `bootcn` equivalent.
+
 **Toasts** (Sonner-style):
 
 ```js
@@ -109,6 +113,8 @@ writes back + fires `change`, so forms just work):
 </select>
 ```
 
+**Select** is the same component without search: `data-bootcn-select`.
+
 **Command palette** — opens on ⌘K / Ctrl+K (or `bootcn.command.open()`):
 
 ```html
@@ -121,21 +127,61 @@ writes back + fires `change`, so forms just work):
 
 Items with `data-href` navigate; otherwise set `bootcn.command.onSelect = item => {…}`.
 
-**And more** — see the kitchen-sink `demo/index.php` for live markup:
+### Catalog (shadcn → Bootstrap / bootcn)
 
-| Component | Markup / API |
+| shadcn | This theme |
 |---|---|
-| Input OTP | `<input data-bootcn-otp data-length="6">` (keeps full value in the input) |
-| Calendar | `<div data-bootcn-calendar data-selected="2026-07-15">` |
-| Date Picker | `<input data-bootcn-datepicker>` → button + popover calendar |
-| Context Menu | `<div data-bootcn-context-menu>` with a `-trigger` and hidden `-content` |
-| Hover Card | `data-bootcn-hovercard` + a `-trigger`; content in a `<template data-bootcn-hovercard-content>` |
-| Scroll Area | `class="bootcn-scroll-area"` (CSS-only, thin token scrollbars) |
-| Resizable | `<div data-bootcn-resizable>` with `[data-bootcn-panel]` children (`data-direction="vertical"` for rows) |
-| Menubar | `<div data-bootcn-menubar>` of Bootstrap dropdowns; hover-switch + arrow nav |
-| Navigation Menu | `<nav data-bootcn-navmenu>` with `.bootcn-navmenu-item` (trigger + content panel) |
-| Data Table | `<table data-bootcn-datatable data-page-size="10">`, `<th data-sortable>` — adds filter, sort, pagination |
-| Sidebar | App shell layout — see [App shell & sidebar](#app-shell--sidebar) below |
+| Button | `.btn` + `.btn-primary` / `-secondary` / `-danger` / `-outline-secondary` / `-ghost` / `-link` |
+| Button Group | `.btn-group` |
+| Input / Textarea / Label | `.form-control`, `textarea.form-control`, `.form-label` |
+| Input Group | `.input-group` |
+| Field | `.bootcn-field` (+ `-label`, `-desc`, `-error`) |
+| Checkbox / Radio Group / Switch | `.form-check`, radios, `.form-switch` |
+| Slider | `.form-range` |
+| Native Select | `.form-select` |
+| Select | `<select data-bootcn-select>` |
+| Combobox | `<select data-bootcn-combobox>` |
+| Input OTP | `<input data-bootcn-otp data-length="6">` |
+| Calendar | `<div data-bootcn-calendar>` |
+| Date Picker | `<input data-bootcn-datepicker>` |
+| Accordion | `.accordion` (restyled) |
+| Breadcrumb | `.breadcrumb` |
+| Navigation Menu | `[data-bootcn-navmenu]` |
+| Sidebar | `.bootcn-app-shell` + `[data-bootcn-sidebar]` |
+| Tabs | `.nav-tabs` |
+| Separator | `.bootcn-separator` |
+| Scroll Area | `.bootcn-scroll-area` |
+| Resizable | `[data-bootcn-resizable]` + `[data-bootcn-panel]` |
+| Dialog | `.modal` |
+| Alert Dialog | `.modal.bootcn-alert-dialog` |
+| Sheet | `.offcanvas.offcanvas-end` |
+| Drawer | `.offcanvas.offcanvas-bottom` |
+| Popover / Tooltip | Bootstrap popover / tooltip (auto-inited) |
+| Hover Card | `data-bootcn-hovercard` |
+| Context Menu | `data-bootcn-context-menu` |
+| Dropdown Menu | `.dropdown` |
+| Menubar | `[data-bootcn-menubar]` |
+| Command | `[data-bootcn-command]` |
+| Alert | `.alert` / `.alert-danger` |
+| Toast / Sonner | `bootcn.toast()` |
+| Progress / Spinner | `.progress` / `.spinner-border` |
+| Skeleton | `.bootcn-skeleton` |
+| Badge | `.badge` + `.badge-outline` / `.badge-destructive` |
+| Empty | `.bootcn-empty` |
+| Avatar | `.bootcn-avatar` |
+| Card / Table | `.card` / `.table` |
+| Data Table | `<table data-bootcn-datatable>` |
+| Chart | `[data-bootcn-chart]` (`bar`, `line`, `area`, `donut`) |
+| Carousel | `.carousel` |
+| Aspect Ratio | Bootstrap `.ratio` |
+| Typography | Bootstrap type scale |
+| Item | `.bootcn-item` |
+| Kbd | `.bootcn-kbd` |
+| Collapsible | `.collapse` |
+| Toggle / Toggle Group | `[data-bootcn-toggle]`, `[data-bootcn-toggle-group]` |
+| Pagination | `.pagination` |
+| Direction | `dir="rtl"` on a subtree or `<html>` |
+| Form | Compose `.bootcn-field` with native `<form>` (no React Hook Form) |
 
 ---
 
@@ -328,8 +374,8 @@ to tokens).
 Less-common contextual utilities that also read `-rgb` companions are **not yet
 retargeted** and will render stock Bootstrap colors if used, including:
 
-- `.alert-primary`, `.alert-danger`, … (contextual alert variants — the plain
-  `.alert` is themed)
+- `.alert-primary`, `.alert-success`, … (use the themed `.alert` / `.alert-danger`
+  for shadcn default + destructive)
 - `.list-group-item-primary`, … (contextual list-group variants)
 - `.text-secondary` / `.bg-secondary` are intentionally left alone: shadcn's
   `--secondary` is a light **surface** color, not a text color, so mapping text

@@ -13,12 +13,14 @@ import { Menubar } from './menubar.js';
 import { NavigationMenu } from './navmenu.js';
 import { DataTable } from './datatable.js';
 import { Sidebar } from './sidebar.js';
+import { Toggle, ToggleGroup } from './toggle.js';
+import { Chart } from './chart.js';
 
 const bootcn = {
-  version: '0.2.2',
+  version: '0.2.3',
   // Version of the design-token contract (see tokens.json / TOKENS.md).
   // Bump on any token add/remove/rename so consumers can assert compatibility.
-  tokensVersion: '1.1.0',
+  tokensVersion: '1.2.0',
   toast,
   Toaster,
   Combobox,
@@ -33,11 +35,14 @@ const bootcn = {
   NavigationMenu,
   DataTable,
   Sidebar,
+  Toggle,
+  ToggleGroup,
+  Chart,
   command: null, // set to the first Command instance on init (bootcn.command.open())
   init(root) {
     root = root || document;
     initAvatars(root);
-    root.querySelectorAll('select[data-bootcn-combobox]').forEach((el) => Combobox.getOrCreate(el));
+    root.querySelectorAll('select[data-bootcn-combobox], select[data-bootcn-select]').forEach((el) => Combobox.getOrCreate(el));
     root.querySelectorAll('input[data-bootcn-otp]').forEach((el) => InputOTP.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-calendar]').forEach((el) => Calendar.getOrCreate(el));
     root.querySelectorAll('input[data-bootcn-datepicker]').forEach((el) => DatePicker.getOrCreate(el));
@@ -48,10 +53,20 @@ const bootcn = {
     root.querySelectorAll('[data-bootcn-navmenu]').forEach((el) => NavigationMenu.getOrCreate(el));
     root.querySelectorAll('table[data-bootcn-datatable]').forEach((el) => DataTable.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-sidebar]').forEach((el) => Sidebar.getOrCreate(el));
+    root.querySelectorAll('[data-bootcn-toggle-group]').forEach((el) => ToggleGroup.getOrCreate(el));
+    root.querySelectorAll('[data-bootcn-toggle]').forEach((el) => {
+      if (!el.closest('[data-bootcn-toggle-group]')) Toggle.getOrCreate(el);
+    });
+    root.querySelectorAll('[data-bootcn-chart]').forEach((el) => Chart.getOrCreate(el));
     root.querySelectorAll('[data-bootcn-command]').forEach((el) => {
       const inst = Command.getOrCreate(el);
       if (!bootcn.command) bootcn.command = inst;
     });
+    const b = typeof window !== 'undefined' ? window.bootstrap : null;
+    if (b) {
+      root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => b.Tooltip.getOrCreateInstance(el));
+      root.querySelectorAll('[data-bs-toggle="popover"]').forEach((el) => b.Popover.getOrCreateInstance(el));
+    }
   },
 };
 
