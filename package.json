@@ -1,6 +1,6 @@
 {
   "name": "@vicalop/bootstrap-shadcn-theme",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "A shadcn/ui theme for Bootstrap 5, compiled from vendored Bootstrap Sass source, plus bootcn (net-new vanilla-JS components). Token-driven and reusable across projects.",
   "license": "MIT",
   "author": "vicalop",
