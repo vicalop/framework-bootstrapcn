@@ -17,7 +17,7 @@ contract, consumed by both the Bootstrap adapter and every `bootcn` component.
 - Build output: `dist/` — **gitignored on `main`**, produced by `npm run build`.
 
 The consumer-facing map (shadcn name → Bootstrap / `bootcn` markup) lives in
-`README.md`. The live catalog is `demo/index.php`.
+`README.md`. The live catalog is `demo/index.html`.
 
 ## Project status
 
@@ -59,7 +59,7 @@ official primitive, or when the human asks for deeper fidelity.
 ### Left to do
 
 **Catalog maintenance.** When shadcn publishes a new official component, add a
-Bootstrap restyle or `bootcn` equivalent, a `demo/index.php` section, and a
+Bootstrap restyle or `bootcn` equivalent, a `demo/index.html` section, and a
 README row. Re-check [ui.shadcn.com/docs/components](https://ui.shadcn.com/docs/components)
 (or `https://ui.shadcn.com/llms.txt`) rather than assuming the Aug 2026 list is
 frozen.

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings · Acme</title>
+  <link rel="stylesheet" href="../dist/css/bootstrap-shadcn.min.css">
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<div class="bootcn-app-shell d-flex" id="shell">
+  <aside class="bootcn-sidebar" data-bootcn-sidebar>
+    <div class="bootcn-sidebar-header">
+      <span class="bootcn-sidebar-brand-mark"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+      <span class="bootcn-sidebar-label">Acme Inc</span>
+    </div>
+    <nav class="bootcn-sidebar-nav">
+      <div class="bootcn-sidebar-group-label">Platform</div>
+        <a class="bootcn-sidebar-link" href="dashboard.html">
+          <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span class="bootcn-sidebar-label">Dashboard</span>
+        </a>
+        <a class="bootcn-sidebar-link" href="users.html">
+          <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="bootcn-sidebar-label">Users</span>
+        </a>
+        <a class="bootcn-sidebar-link" href="settings.html#billing">
+          <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="bootcn-sidebar-label">Billing</span>
+        </a>
+        <a class="bootcn-sidebar-link active" href="settings.html" aria-current="page">
+          <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg><span class="bootcn-sidebar-label">Settings</span>
+        </a>
+    </nav>
+    <div class="bootcn-sidebar-footer">
+      <a class="bootcn-sidebar-link" href="login.html"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg><span class="bootcn-sidebar-label">Log out</span></a>
+    </div>
+  </aside>
+
+  <div class="bootcn-main">
+    <header class="bootcn-topbar">
+      <button class="icon-btn bootcn-sidebar-toggle" type="button" data-bootcn-sidebar-toggle aria-label="Open navigation"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+      <div class="topbar-search">
+        <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" class="form-control" placeholder="Search…" aria-label="Search" readonly
+               style="cursor:pointer" onclick="window.bootcn && bootcn.command && bootcn.command.open()">
+        <span class="kbd">⌘K</span>
+      </div>
+      <div class="ms-auto d-flex align-items-center gap-1">
+        <button class="icon-btn" type="button" id="themeToggle" aria-label="Toggle theme"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+        <button class="icon-btn" type="button" aria-label="Notifications"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+        <div class="dropdown">
+          <button class="btn p-0 border-0 bg-transparent" data-bs-toggle="dropdown" aria-label="Account">
+            <span class="avatar">SC</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><h6 class="dropdown-header">Sofia Chen<br><span class="fw-normal text-body-secondary">sofia@acme.com</span></h6></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+            <li><a class="dropdown-item" href="settings.html#billing">Billing</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="login.html">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main class="main-scroll flex-grow-1">
+      <div class="content">
+
+<div class="mb-4">
+  <h1 class="page-title">Settings</h1>
+  <p class="page-sub">Manage your account settings and preferences.</p>
+</div>
+<ul class="nav nav-tabs mb-4" role="tablist">
+  <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-profile" type="button" role="tab">Profile</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-notifs" type="button" role="tab">Notifications</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-billing" type="button" role="tab">Billing</button></li>
+</ul>
+<div class="tab-content" style="max-width:42rem">
+  <div class="tab-pane fade show active" id="tab-profile" role="tabpanel">
+    <div class="card">
+      <div class="card-header bg-transparent border-0 pt-3">
+        <h2 class="h6 mb-0">Profile</h2>
+        <p class="page-sub">This is how others will see you on the site.</p>
+      </div>
+      <div class="card-body">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <span class="avatar" style="width:3.5rem;height:3.5rem;font-size:1rem">SC</span>
+          <div>
+            <button class="btn btn-outline-secondary btn-sm">Change avatar</button>
+            <p class="page-sub mt-1">JPG, GIF or PNG. 1MB max.</p>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label class="form-label" for="f-name">Name</label>
+            <input class="form-control" id="f-name" value="Sofia Chen">
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label" for="f-user">Username</label>
+            <input class="form-control" id="f-user" value="sofiachen">
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label d-block" for="f-role">Role</label>
+            <select class="form-select" id="f-role" data-bootcn-combobox data-placeholder="Select role…" data-search-placeholder="Search roles…">
+              <option value="owner" selected>Owner</option>
+              <option value="admin">Admin</option>
+              <option value="member">Member</option>
+              <option value="viewer">Viewer</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="f-email">Email</label>
+            <input class="form-control" id="f-email" type="email" value="sofia@acme.com">
+            <div class="form-text">Used for sign-in and receipts.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="f-bio">Bio</label>
+            <textarea class="form-control" id="f-bio" rows="3">Product designer building calm tools at Acme.</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex justify-content-end gap-2">
+        <button class="btn btn-outline-secondary">Cancel</button>
+        <button class="btn btn-primary" onclick="bootcn.toast.success('Profile saved', {description:'Your changes have been saved.'})">Save changes</button>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="tab-notifs" role="tabpanel">
+    <div class="card">
+      <div class="card-header bg-transparent border-0 pt-3">
+        <h2 class="h6 mb-0">Notifications</h2>
+        <p class="page-sub">Choose what you want to hear about.</p>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start gap-3">
+          <div>
+            <div class="fw-medium small">Product updates</div>
+            <div class="text-body-secondary small">News about features and improvements.</div>
+          </div>
+          <div class="form-check form-switch mt-1">
+            <input class="form-check-input" type="checkbox" checked aria-label="Product updates">
+          </div>
+        </div>
+<div class="d-flex justify-content-between align-items-start gap-3 mt-3 pt-3 border-top">
+          <div>
+            <div class="fw-medium small">Security alerts</div>
+            <div class="text-body-secondary small">Sign-ins and changes to your account.</div>
+          </div>
+          <div class="form-check form-switch mt-1">
+            <input class="form-check-input" type="checkbox" checked aria-label="Security alerts">
+          </div>
+        </div>
+<div class="d-flex justify-content-between align-items-start gap-3 mt-3 pt-3 border-top">
+          <div>
+            <div class="fw-medium small">Weekly digest</div>
+            <div class="text-body-secondary small">A summary of activity every Monday.</div>
+          </div>
+          <div class="form-check form-switch mt-1">
+            <input class="form-check-input" type="checkbox"  aria-label="Weekly digest">
+          </div>
+        </div>
+<div class="d-flex justify-content-between align-items-start gap-3 mt-3 pt-3 border-top">
+          <div>
+            <div class="fw-medium small">Marketing emails</div>
+            <div class="text-body-secondary small">Offers, surveys, and announcements.</div>
+          </div>
+          <div class="form-check form-switch mt-1">
+            <input class="form-check-input" type="checkbox"  aria-label="Marketing emails">
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex justify-content-end">
+        <button class="btn btn-primary" onclick="bootcn.toast.success('Preferences updated')">Save preferences</button>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="tab-billing" role="tabpanel">
+    <div class="card mb-4">
+      <div class="card-header bg-transparent border-0 pt-3">
+        <h2 class="h6 mb-0">Plan</h2>
+        <p class="page-sub">You are currently on the Pro plan.</p>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="fw-semibold">Pro</span>
+              <span class="badge text-bg-primary">Current</span>
+            </div>
+            <div class="page-sub">$29 / month · renews Feb 1, 2026</div>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm">Cancel plan</button>
+            <button class="btn btn-primary btn-sm">Upgrade</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header bg-transparent border-0 pt-3">
+        <h2 class="h6 mb-0">Payment method</h2>
+        <p class="page-sub">Charged automatically each period.</p>
+      </div>
+      <div class="card-body d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-2">
+          <span class="stat-ico"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span>
+          <span class="small">Visa ending in <span class="fw-medium">4242</span></span>
+        </div>
+        <button class="btn btn-outline-secondary btn-sm">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div data-bootcn-command hidden>
+  <div data-bootcn-command-group="Navigation">
+    <button data-bootcn-command-item data-href="dashboard.html" data-shortcut="G D">Go to Dashboard</button>
+    <button data-bootcn-command-item data-href="users.html" data-shortcut="G U">Go to Users</button>
+    <button data-bootcn-command-item data-href="settings.html" data-shortcut="G S">Go to Settings</button>
+    <button data-bootcn-command-item data-href="settings.html#billing" data-shortcut="G B">Go to Billing</button>
+    <button data-bootcn-command-item data-href="index.html" data-shortcut="G C">Component catalog</button>
+  </div>
+  <div data-bootcn-command-group="Actions">
+    <button data-bootcn-command-item data-id="invite">Invite a user</button>
+    <button data-bootcn-command-item data-id="theme">Toggle theme</button>
+    <button data-bootcn-command-item data-href="login.html" data-id="logout">Log out</button>
+  </div>
+</div>
+
+<script src="../dist/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/js/bootcn.js"></script>
+<script src="demo.js"></script>
+<script>
+  window.addEventListener('load', function () {
+    if (!window.bootcn || !bootcn.command) return;
+    bootcn.command.onSelect = function (item) {
+      if (item.id === 'theme') document.getElementById('themeToggle').click();
+      else if (item.id === 'invite') bootcn.toast('Invite sent', { description: 'We emailed an invitation.' });
+    };
+  });
+</script>
+<script>
+  window.addEventListener('load', function () {
+    if (location.hash === '#billing') {
+      new bootstrap.Tab(document.querySelector('[data-bs-target="#tab-billing"]')).show();
+    }
+  });
+</script>
+
+</body>
+</html>

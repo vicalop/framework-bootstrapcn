@@ -86,7 +86,7 @@ Every component reads from the runtime design tokens, so they all theme in light
 and dark automatically. Most auto-initialize from `data-bootcn-*` markup; a few
 have an imperative API on the global `bootcn` object.
 
-The kitchen-sink `demo/index.php` is a **component-for-component catalog** of
+The kitchen-sink `demo/index.html` is a **component-for-component catalog** of
 every official [shadcn/ui](https://ui.shadcn.com/docs/components) primitive,
 mapped onto Bootstrap 5.3 (themed) or a `bootcn` equivalent.
 
@@ -328,8 +328,10 @@ npm run build        # -> dist/ (CSS expanded + min, bootcn JS iife/esm/min, fon
 npm run watch        # recompile CSS on change
 ```
 
-Open `demo/index.php` (any PHP server, e.g. `php -S localhost:8000`) for a
-kitchen-sink of every component in light and dark. The built `dist/` folder is
+After `npm run build`, open `demo/index.html` (file:// is fine, or
+`npx serve .` then visit `/demo/`) for a kitchen-sink of every component in
+light and dark. App examples live beside it: `dashboard.html`, `users.html`,
+`settings.html`, `login.html`, `signup.html`. The built `dist/` folder is
 gitignored — it's generated on demand and attached to release tags (see below).
 
 To bump the vendored Bootstrap version: change `bootstrap` in `package.json`,

@@ -1,23 +1,11 @@
-<?php
-require __DIR__ . '/partials/icons.php';
-$pages = ['Dashboard' => 'dashboard.php', 'Users' => 'users.php', 'Settings' => 'settings.php', 'Login' => 'login.php', 'Sign up' => 'signup.php'];
-$nav = [
-  'Form & input' => ['button','button-group','input','input-group','textarea','label','field','checkbox','radio-group','switch','slider','native-select','select','combobox','input-otp','calendar','date-picker'],
-  'Layout & nav' => ['accordion','breadcrumb','navigation-menu','sidebar','tabs','separator','scroll-area','resizable'],
-  'Overlays' => ['dialog','alert-dialog','sheet','drawer','popover','tooltip','hover-card','context-menu','dropdown-menu','menubar','command'],
-  'Feedback' => ['alert','toast','progress','spinner','skeleton','badge','empty'],
-  'Display' => ['avatar','card','table','data-table','chart','carousel','aspect-ratio','typography','item','kbd'],
-  'Misc' => ['collapsible','toggle','toggle-group','pagination','direction'],
-];
-?>
 <!doctype html>
 <html lang="en" data-bs-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>bootstrap-shadcn-theme — component catalog</title>
-  <link rel="stylesheet" href="/dist/css/bootstrap-shadcn.min.css">
-  <link rel="stylesheet" href="/demo/demo.css">
+  <link rel="stylesheet" href="../dist/css/bootstrap-shadcn.min.css">
+  <link rel="stylesheet" href="demo.css">
 </head>
 <body class="p-4">
   <div class="container-xl">
@@ -30,19 +18,79 @@ $nav = [
     </div>
     <div class="d-flex flex-wrap align-items-center gap-2 mb-4 pb-3 border-bottom">
       <span class="text-body-secondary small me-1">Example pages:</span>
-      <?php foreach ($pages as $label => $href): ?>
-        <a class="btn btn-outline-secondary btn-sm" href="/demo/<?= $href ?>"><?= $label ?></a>
-      <?php endforeach; ?>
+        <a class="btn btn-outline-secondary btn-sm" href="dashboard.html">Dashboard</a>
+        <a class="btn btn-outline-secondary btn-sm" href="users.html">Users</a>
+        <a class="btn btn-outline-secondary btn-sm" href="settings.html">Settings</a>
+        <a class="btn btn-outline-secondary btn-sm" href="login.html">Login</a>
+        <a class="btn btn-outline-secondary btn-sm" href="signup.html">Sign up</a>
     </div>
 
     <div class="ks-layout">
       <nav class="ks-nav bootcn-scroll-area" aria-label="Components">
-        <?php foreach ($nav as $group => $ids): ?>
-          <span class="ks-nav-group"><?= $group ?></span>
-          <?php foreach ($ids as $id): ?>
-            <a href="#<?= $id ?>"><?= ucwords(str_replace('-', ' ', $id)) ?></a>
-          <?php endforeach; ?>
-        <?php endforeach; ?>
+          <span class="ks-nav-group">Form & input</span>
+            <a href="#button">Button</a>
+            <a href="#button-group">Button Group</a>
+            <a href="#input">Input</a>
+            <a href="#input-group">Input Group</a>
+            <a href="#textarea">Textarea</a>
+            <a href="#label">Label</a>
+            <a href="#field">Field</a>
+            <a href="#checkbox">Checkbox</a>
+            <a href="#radio-group">Radio Group</a>
+            <a href="#switch">Switch</a>
+            <a href="#slider">Slider</a>
+            <a href="#native-select">Native Select</a>
+            <a href="#select">Select</a>
+            <a href="#combobox">Combobox</a>
+            <a href="#input-otp">Input OTP</a>
+            <a href="#calendar">Calendar</a>
+            <a href="#date-picker">Date Picker</a>
+          <span class="ks-nav-group">Layout & nav</span>
+            <a href="#accordion">Accordion</a>
+            <a href="#breadcrumb">Breadcrumb</a>
+            <a href="#navigation-menu">Navigation Menu</a>
+            <a href="#sidebar">Sidebar</a>
+            <a href="#tabs">Tabs</a>
+            <a href="#separator">Separator</a>
+            <a href="#scroll-area">Scroll Area</a>
+            <a href="#resizable">Resizable</a>
+          <span class="ks-nav-group">Overlays</span>
+            <a href="#dialog">Dialog</a>
+            <a href="#alert-dialog">Alert Dialog</a>
+            <a href="#sheet">Sheet</a>
+            <a href="#drawer">Drawer</a>
+            <a href="#popover">Popover</a>
+            <a href="#tooltip">Tooltip</a>
+            <a href="#hover-card">Hover Card</a>
+            <a href="#context-menu">Context Menu</a>
+            <a href="#dropdown-menu">Dropdown Menu</a>
+            <a href="#menubar">Menubar</a>
+            <a href="#command">Command</a>
+          <span class="ks-nav-group">Feedback</span>
+            <a href="#alert">Alert</a>
+            <a href="#toast">Toast</a>
+            <a href="#progress">Progress</a>
+            <a href="#spinner">Spinner</a>
+            <a href="#skeleton">Skeleton</a>
+            <a href="#badge">Badge</a>
+            <a href="#empty">Empty</a>
+          <span class="ks-nav-group">Display</span>
+            <a href="#avatar">Avatar</a>
+            <a href="#card">Card</a>
+            <a href="#table">Table</a>
+            <a href="#data-table">Data Table</a>
+            <a href="#chart">Chart</a>
+            <a href="#carousel">Carousel</a>
+            <a href="#aspect-ratio">Aspect Ratio</a>
+            <a href="#typography">Typography</a>
+            <a href="#item">Item</a>
+            <a href="#kbd">Kbd</a>
+          <span class="ks-nav-group">Misc</span>
+            <a href="#collapsible">Collapsible</a>
+            <a href="#toggle">Toggle</a>
+            <a href="#toggle-group">Toggle Group</a>
+            <a href="#pagination">Pagination</a>
+            <a href="#direction">Direction</a>
       </nav>
 
       <div>
@@ -224,9 +272,9 @@ $nav = [
           <div class="bootcn-app-shell d-flex card overflow-hidden" style="height:12rem;max-width:36rem">
             <aside data-bootcn-sidebar class="bootcn-sidebar">
               <nav class="bootcn-sidebar-nav py-2">
-                <?php foreach (['⌂'=>'Dashboard','◱'=>'Users','⚙'=>'Settings'] as $i=>$l): ?>
-                  <a class="bootcn-sidebar-link" href="#"><span class="bootcn-sidebar-icon" aria-hidden="true"><?= $i ?></span><span class="bootcn-sidebar-label"><?= $l ?></span></a>
-                <?php endforeach; ?>
+                                <a class="bootcn-sidebar-link" href="#"><span class="bootcn-sidebar-icon" aria-hidden="true">⌂</span><span class="bootcn-sidebar-label">Dashboard</span></a>
+                  <a class="bootcn-sidebar-link" href="#"><span class="bootcn-sidebar-icon" aria-hidden="true">◱</span><span class="bootcn-sidebar-label">Users</span></a>
+                  <a class="bootcn-sidebar-link" href="#"><span class="bootcn-sidebar-icon" aria-hidden="true">⚙</span><span class="bootcn-sidebar-label">Settings</span></a>
               </nav>
             </aside>
             <div class="bootcn-main p-3 text-body-secondary">Content area</div>
@@ -259,7 +307,21 @@ $nav = [
         <section class="ks-section" id="scroll-area">
           <h2 class="h5">Scroll Area</h2>
           <div class="bootcn-scroll-area card p-3" style="height:8rem;max-width:18rem">
-            <?php for ($i = 1; $i <= 15; $i++) echo "<div class='py-1'>Notification $i</div>"; ?>
+            <div class='py-1'>Notification 1</div>
+            <div class='py-1'>Notification 2</div>
+            <div class='py-1'>Notification 3</div>
+            <div class='py-1'>Notification 4</div>
+            <div class='py-1'>Notification 5</div>
+            <div class='py-1'>Notification 6</div>
+            <div class='py-1'>Notification 7</div>
+            <div class='py-1'>Notification 8</div>
+            <div class='py-1'>Notification 9</div>
+            <div class='py-1'>Notification 10</div>
+            <div class='py-1'>Notification 11</div>
+            <div class='py-1'>Notification 12</div>
+            <div class='py-1'>Notification 13</div>
+            <div class='py-1'>Notification 14</div>
+            <div class='py-1'>Notification 15</div>
           </div>
         </section>
 
@@ -396,8 +458,8 @@ $nav = [
           <button class="btn btn-outline-secondary btn-sm" onclick="bootcn.command.open()">Open command palette (Ctrl / ⌘ K)</button>
           <div data-bootcn-command hidden>
             <div data-bootcn-command-group="Navigation">
-              <button data-bootcn-command-item data-href="dashboard.php" data-shortcut="G D">Go to Dashboard</button>
-              <button data-bootcn-command-item data-href="users.php" data-shortcut="G U">Go to Users</button>
+              <button data-bootcn-command-item data-href="dashboard.html" data-shortcut="G D">Go to Dashboard</button>
+              <button data-bootcn-command-item data-href="users.html" data-shortcut="G U">Go to Users</button>
             </div>
             <div data-bootcn-command-group="Actions">
               <button data-bootcn-command-item data-id="copy">Copy current URL</button>
@@ -409,14 +471,14 @@ $nav = [
         <section class="ks-section" id="alert">
           <h2 class="h5">Alert</h2>
           <div class="alert mb-3" role="alert" style="max-width:36rem">
-            <?= icon('bell') ?>
+            <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
             <div>
               <div class="bootcn-alert-title">Heads up!</div>
               <p class="bootcn-alert-desc">You can add components to your app using the cli.</p>
             </div>
           </div>
           <div class="alert alert-danger bootcn-alert-destructive" role="alert" style="max-width:36rem">
-            <?= icon('activity') ?>
+            <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             <div>
               <div class="bootcn-alert-title">Error</div>
               <p class="bootcn-alert-desc">Your session has expired. Please log in again.</p>
@@ -468,7 +530,7 @@ $nav = [
           <h2 class="h5">Empty</h2>
           <div class="bootcn-empty" style="max-width:28rem">
             <div class="bootcn-empty-header">
-              <span class="bootcn-empty-media bootcn-empty-media-icon"><?= icon('inbox') ?></span>
+              <span class="bootcn-empty-media bootcn-empty-media-icon"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
               <h3 class="bootcn-empty-title">No projects yet</h3>
               <p class="bootcn-empty-desc">Get started by creating a new project.</p>
             </div>
@@ -573,7 +635,7 @@ $nav = [
           <h2 class="h5">Item</h2>
           <div class="bootcn-item-group" style="max-width:28rem">
             <div class="bootcn-item bootcn-item-outline">
-              <span class="bootcn-item-media bootcn-item-media-icon"><?= icon('billing') ?></span>
+              <span class="bootcn-item-media bootcn-item-media-icon"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span>
               <div class="bootcn-item-content">
                 <div class="bootcn-item-title">Visa ending in 4242</div>
                 <p class="bootcn-item-desc">Expires 12/28</p>
@@ -602,15 +664,15 @@ $nav = [
 
         <section class="ks-section" id="toggle">
           <h2 class="h5">Toggle</h2>
-          <button type="button" class="bootcn-toggle" data-bootcn-toggle aria-pressed="false" aria-label="Toggle italic"><?= icon('italic') ?></button>
+          <button type="button" class="bootcn-toggle" data-bootcn-toggle aria-pressed="false" aria-label="Toggle italic"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" x2="10" y1="4" y2="4"/><line x1="14" x2="5" y1="20" y2="20"/><line x1="15" x2="9" y1="4" y2="20"/></svg></button>
         </section>
 
         <section class="ks-section" id="toggle-group">
           <h2 class="h5">Toggle Group</h2>
           <div data-bootcn-toggle-group data-type="single" class="bootcn-toggle-group-outline">
-            <button type="button" class="bootcn-toggle" data-value="bold" data-default aria-label="Bold"><?= icon('bold') ?></button>
-            <button type="button" class="bootcn-toggle" data-value="italic" aria-label="Italic"><?= icon('italic') ?></button>
-            <button type="button" class="bootcn-toggle" data-value="underline" aria-label="Underline"><?= icon('underline') ?></button>
+            <button type="button" class="bootcn-toggle" data-value="bold" data-default aria-label="Bold"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8"/></svg></button>
+            <button type="button" class="bootcn-toggle" data-value="italic" aria-label="Italic"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" x2="10" y1="4" y2="4"/><line x1="14" x2="5" y1="20" y2="20"/><line x1="15" x2="9" y1="4" y2="20"/></svg></button>
+            <button type="button" class="bootcn-toggle" data-value="underline" aria-label="Underline"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><line x1="4" x2="20" y1="20" y2="20"/></svg></button>
           </div>
         </section>
 
@@ -640,8 +702,8 @@ $nav = [
     </div>
   </div>
 
-  <script src="/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/dist/js/bootcn.js"></script>
+  <script src="../dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../dist/js/bootcn.js"></script>
   <script>
     (function () {
       var root = document.documentElement;

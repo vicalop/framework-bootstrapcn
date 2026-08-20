@@ -108,8 +108,8 @@ using the same `<svg class="bootcn-icon">` shell.
 - **Runtime icon fonts** — not part of the bootcn CDN bundle; inline SVG keeps SSR
   apps flash-free with zero JS.
 
-## Demo helper (PHP only)
+## Demo usage
 
-This repo's demo includes `demo/partials/icons.php` — a local `icon('name')` helper
-for the blessed set. Copy that pattern into your app or paste SVGs directly; it is
-**not** shipped in `dist/`.
+The static HTML demos inline Lucide SVGs from the blessed set. Copy those
+paths into your app or paste SVGs from `icons/lucide-curated.md`. Icon markup
+is **not** shipped in `dist/`.

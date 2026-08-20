@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Users · Acme</title>
+  <link rel="stylesheet" href="../dist/css/bootstrap-shadcn.min.css">
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<div class="bootcn-app-shell d-flex" id="shell">
+  <aside class="bootcn-sidebar" data-bootcn-sidebar>
+    <div class="bootcn-sidebar-header">
+      <span class="bootcn-sidebar-brand-mark"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+      <span class="bootcn-sidebar-label">Acme Inc</span>
+    </div>
+    <nav class="bootcn-sidebar-nav">
+      <div class="bootcn-sidebar-group-label">Platform</div>
+        <a class="bootcn-sidebar-link" href="dashboard.html">
+          <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span class="bootcn-sidebar-label">Dashboard</span>
+        </a>
+        <a class="bootcn-sidebar-link active" href="users.html" aria-current="page">
+          <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="bootcn-sidebar-label">Users</span>
+        </a>
+        <a class="bootcn-sidebar-link" href="settings.html#billing">
+          <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="bootcn-sidebar-label">Billing</span>
+        </a>
+        <a class="bootcn-sidebar-link" href="settings.html">
+          <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg><span class="bootcn-sidebar-label">Settings</span>
+        </a>
+    </nav>
+    <div class="bootcn-sidebar-footer">
+      <a class="bootcn-sidebar-link" href="login.html"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg><span class="bootcn-sidebar-label">Log out</span></a>
+    </div>
+  </aside>
+
+  <div class="bootcn-main">
+    <header class="bootcn-topbar">
+      <button class="icon-btn bootcn-sidebar-toggle" type="button" data-bootcn-sidebar-toggle aria-label="Open navigation"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+      <div class="topbar-search">
+        <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" class="form-control" placeholder="Search…" aria-label="Search" readonly
+               style="cursor:pointer" onclick="window.bootcn && bootcn.command && bootcn.command.open()">
+        <span class="kbd">⌘K</span>
+      </div>
+      <div class="ms-auto d-flex align-items-center gap-1">
+        <button class="icon-btn" type="button" id="themeToggle" aria-label="Toggle theme"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
+        <button class="icon-btn" type="button" aria-label="Notifications"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+        <div class="dropdown">
+          <button class="btn p-0 border-0 bg-transparent" data-bs-toggle="dropdown" aria-label="Account">
+            <span class="avatar">SC</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><h6 class="dropdown-header">Sofia Chen<br><span class="fw-normal text-body-secondary">sofia@acme.com</span></h6></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+            <li><a class="dropdown-item" href="settings.html#billing">Billing</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="login.html">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main class="main-scroll flex-grow-1">
+      <div class="content">
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+  <div>
+    <h1 class="page-title">Users</h1>
+    <p class="page-sub">Manage who has access to this workspace.</p>
+  </div>
+  <button class="btn btn-primary btn-sm"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>&nbsp;Invite user</button>
+</div>
+<div class="d-flex flex-wrap gap-2 mb-3">
+  <div class="topbar-search" style="max-width:18rem">
+    <svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="search" class="form-control form-control-sm" placeholder="Filter users…" style="padding-left:2rem">
+  </div>
+  <div class="dropdown">
+    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown">Status</button>
+    <ul class="dropdown-menu">
+      <li><label class="dropdown-item"><input class="form-check-input me-2" type="checkbox" checked>Active</label></li>
+      <li><label class="dropdown-item"><input class="form-check-input me-2" type="checkbox" checked>Invited</label></li>
+      <li><label class="dropdown-item"><input class="form-check-input me-2" type="checkbox">Suspended</label></li>
+    </ul>
+  </div>
+  <button class="btn btn-outline-secondary btn-sm ms-auto">Columns&nbsp;<svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+</div>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table align-middle mb-0">
+      <thead>
+        <tr>
+          <th style="width:2.5rem"><input class="form-check-input" type="checkbox" aria-label="Select all"></th>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Last active</th>
+          <th class="text-end">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input class="form-check-input" type="checkbox" aria-label="Select row"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2 min-w-0">
+              <span class="avatar avatar-sm">SC</span>
+              <div class="min-w-0">
+                <div class="fw-medium small text-truncate">Sofia Chen</div>
+                <div class="text-body-secondary small text-truncate">sofia@acme.com</div>
+              </div>
+            </div>
+          </td>
+          <td class="small">Owner</td>
+          <td>
+            <span class="badge border bg-transparent text-body-secondary fw-medium">
+              <span class="dot dot-active"></span>Active
+            </span>
+          </td>
+          <td class="small text-body-secondary">2 min ago</td>
+          <td class="text-end">
+            <div class="dropdown">
+              <button class="icon-btn" style="width:1.75rem;height:1.75rem" data-bs-toggle="dropdown" aria-label="Row actions"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View profile</a></li>
+                <li><a class="dropdown-item" href="#">Edit role</a></li>
+                <li><a class="dropdown-item" href="#">Copy user ID</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#">Remove</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+<tr>
+          <td><input class="form-check-input" type="checkbox" aria-label="Select row"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2 min-w-0">
+              <span class="avatar avatar-sm">MR</span>
+              <div class="min-w-0">
+                <div class="fw-medium small text-truncate">Marcus Reed</div>
+                <div class="text-body-secondary small text-truncate">marcus@acme.com</div>
+              </div>
+            </div>
+          </td>
+          <td class="small">Admin</td>
+          <td>
+            <span class="badge border bg-transparent text-body-secondary fw-medium">
+              <span class="dot dot-active"></span>Active
+            </span>
+          </td>
+          <td class="small text-body-secondary">1 hour ago</td>
+          <td class="text-end">
+            <div class="dropdown">
+              <button class="icon-btn" style="width:1.75rem;height:1.75rem" data-bs-toggle="dropdown" aria-label="Row actions"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View profile</a></li>
+                <li><a class="dropdown-item" href="#">Edit role</a></li>
+                <li><a class="dropdown-item" href="#">Copy user ID</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#">Remove</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+<tr>
+          <td><input class="form-check-input" type="checkbox" aria-label="Select row"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2 min-w-0">
+              <span class="avatar avatar-sm">PA</span>
+              <div class="min-w-0">
+                <div class="fw-medium small text-truncate">Priya Anand</div>
+                <div class="text-body-secondary small text-truncate">priya@acme.com</div>
+              </div>
+            </div>
+          </td>
+          <td class="small">Member</td>
+          <td>
+            <span class="badge border bg-transparent text-body-secondary fw-medium">
+              <span class="dot dot-active"></span>Active
+            </span>
+          </td>
+          <td class="small text-body-secondary">3 hours ago</td>
+          <td class="text-end">
+            <div class="dropdown">
+              <button class="icon-btn" style="width:1.75rem;height:1.75rem" data-bs-toggle="dropdown" aria-label="Row actions"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View profile</a></li>
+                <li><a class="dropdown-item" href="#">Edit role</a></li>
+                <li><a class="dropdown-item" href="#">Copy user ID</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#">Remove</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+<tr>
+          <td><input class="form-check-input" type="checkbox" aria-label="Select row"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2 min-w-0">
+              <span class="avatar avatar-sm">DT</span>
+              <div class="min-w-0">
+                <div class="fw-medium small text-truncate">Diego Torres</div>
+                <div class="text-body-secondary small text-truncate">diego@acme.com</div>
+              </div>
+            </div>
+          </td>
+          <td class="small">Member</td>
+          <td>
+            <span class="badge border bg-transparent text-body-secondary fw-medium">
+              <span class="dot dot-invited"></span>Invited
+            </span>
+          </td>
+          <td class="small text-body-secondary">—</td>
+          <td class="text-end">
+            <div class="dropdown">
+              <button class="icon-btn" style="width:1.75rem;height:1.75rem" data-bs-toggle="dropdown" aria-label="Row actions"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View profile</a></li>
+                <li><a class="dropdown-item" href="#">Edit role</a></li>
+                <li><a class="dropdown-item" href="#">Copy user ID</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#">Remove</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+<tr>
+          <td><input class="form-check-input" type="checkbox" aria-label="Select row"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2 min-w-0">
+              <span class="avatar avatar-sm">HI</span>
+              <div class="min-w-0">
+                <div class="fw-medium small text-truncate">Hana Ito</div>
+                <div class="text-body-secondary small text-truncate">hana@acme.com</div>
+              </div>
+            </div>
+          </td>
+          <td class="small">Member</td>
+          <td>
+            <span class="badge border bg-transparent text-body-secondary fw-medium">
+              <span class="dot dot-active"></span>Active
+            </span>
+          </td>
+          <td class="small text-body-secondary">Yesterday</td>
+          <td class="text-end">
+            <div class="dropdown">
+              <button class="icon-btn" style="width:1.75rem;height:1.75rem" data-bs-toggle="dropdown" aria-label="Row actions"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View profile</a></li>
+                <li><a class="dropdown-item" href="#">Edit role</a></li>
+                <li><a class="dropdown-item" href="#">Copy user ID</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#">Remove</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+<tr>
+          <td><input class="form-check-input" type="checkbox" aria-label="Select row"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2 min-w-0">
+              <span class="avatar avatar-sm">TB</span>
+              <div class="min-w-0">
+                <div class="fw-medium small text-truncate">Tom Becker</div>
+                <div class="text-body-secondary small text-truncate">tom@acme.com</div>
+              </div>
+            </div>
+          </td>
+          <td class="small">Viewer</td>
+          <td>
+            <span class="badge border bg-transparent text-body-secondary fw-medium">
+              <span class="dot dot-suspended"></span>Suspended
+            </span>
+          </td>
+          <td class="small text-body-secondary">2 weeks ago</td>
+          <td class="text-end">
+            <div class="dropdown">
+              <button class="icon-btn" style="width:1.75rem;height:1.75rem" data-bs-toggle="dropdown" aria-label="Row actions"><svg class="bootcn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">View profile</a></li>
+                <li><a class="dropdown-item" href="#">Edit role</a></li>
+                <li><a class="dropdown-item" href="#">Copy user ID</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#">Remove</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-3">
+  <span class="small text-body-secondary">0 of 6 row(s) selected.</span>
+  <div class="d-flex gap-2">
+    <button class="btn btn-outline-secondary btn-sm" disabled>Previous</button>
+    <button class="btn btn-outline-secondary btn-sm">Next</button>
+  </div>
+</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div data-bootcn-command hidden>
+  <div data-bootcn-command-group="Navigation">
+    <button data-bootcn-command-item data-href="dashboard.html" data-shortcut="G D">Go to Dashboard</button>
+    <button data-bootcn-command-item data-href="users.html" data-shortcut="G U">Go to Users</button>
+    <button data-bootcn-command-item data-href="settings.html" data-shortcut="G S">Go to Settings</button>
+    <button data-bootcn-command-item data-href="settings.html#billing" data-shortcut="G B">Go to Billing</button>
+    <button data-bootcn-command-item data-href="index.html" data-shortcut="G C">Component catalog</button>
+  </div>
+  <div data-bootcn-command-group="Actions">
+    <button data-bootcn-command-item data-id="invite">Invite a user</button>
+    <button data-bootcn-command-item data-id="theme">Toggle theme</button>
+    <button data-bootcn-command-item data-href="login.html" data-id="logout">Log out</button>
+  </div>
+</div>
+
+<script src="../dist/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/js/bootcn.js"></script>
+<script src="demo.js"></script>
+<script>
+  window.addEventListener('load', function () {
+    if (!window.bootcn || !bootcn.command) return;
+    bootcn.command.onSelect = function (item) {
+      if (item.id === 'theme') document.getElementById('themeToggle').click();
+      else if (item.id === 'invite') bootcn.toast('Invite sent', { description: 'We emailed an invitation.' });
+    };
+  });
+</script>
+
+</body>
+</html>
