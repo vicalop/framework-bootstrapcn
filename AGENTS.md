@@ -49,18 +49,14 @@ official primitive, or when the human asks for deeper fidelity.
 - **Packaging.** jsDelivr GitHub-tag CDN, release Action, Lucide as the icon
   system. Example pages: dashboard, users, settings, login, signup.
 
-### Current versions (as of the catalog-parity commit)
+### Current versions
 
 | | Value | Notes |
 |---|---|---|
-| `package.json` `version` | `0.2.3` | Last **tagged** CDN release is also `v0.2.3`. Catalog work is on `main` only until a new tag. |
+| `package.json` `version` | `0.3.0` | CDN tag `v0.3.0` (catalog parity). Do not retag `v0.2.3`. |
 | Token schema | `1.2.0` | `tokens.json` + `bootcn.tokensVersion` |
 
 ### Left to do
-
-**Release (only when the human asks).** Catalog parity changed `dist/`. Cut a
-new package version (next is `0.2.4` or `0.3.0`) and push a matching `v*` tag
-using the workflow below. Do not retag `v0.2.3`.
 
 **Catalog maintenance.** When shadcn publishes a new official component, add a
 Bootstrap restyle or `bootcn` equivalent, a `demo/index.php` section, and a
